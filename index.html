@@ -3,161 +3,408 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fête des Maternelles 2026 — Hub de Planification</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
+    <title>Fête des Maternelles 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Epilogue:wght@700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
-        :root {
-            --bg-fluid: #f0f4f8;
-            --text-main: #0f172a;
-            --text-sub: #334155;
-            --shadow-deep: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.15);
-            --shadow-tag: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            
-            /* Couleurs thématiques ultra-contrastées */
-            --color-ven: #047857; /* Vert Foncé */
-            --color-ven-bg: #d1fae5;
-            --color-burger: #b91c1c; /* Rouge Foncé */
-            --color-burger-bg: #fee2e2;
-            --color-bar: #1d4ed8; /* Bleu Foncé */
-            --color-bar-bg: #dbeafe;
-            --color-caisse: #6d28d9; /* Violet Foncé */
-            --color-caisse-bg: #ede9fe;
-            --color-log: #a16207; /* Ambre/Marron */
-            --color-log-bg: #fef3c7;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+            --primary: #0f172a;
+            --accent-warm: #f97316;
+            --accent-blue: #3b82f6;
+            --accent-green: #10b981;
+            --accent-purple: #8b5cf6;
+            --text-main: #0f172a;
+            --text-sub: #475569;
+            --bg-base: #fafafa;
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --bg-glass: rgba(255, 255, 255, 0.7);
+            --border-glass: rgba(255, 255, 255, 0.3);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-fluid);
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #fafafa 0%, #f3f4f6 50%, #f0f9ff 100%);
             color: var(--text-main);
-            padding: 30px 15px;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        .app-container {
-            max-width: 1400px;
+        .container {
+            max-width: 1360px;
             margin: 0 auto;
+            padding: 0 24px;
         }
 
+        /* ====== HEADER & NAV ====== */
         header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .year-badge {
-            display: inline-block;
-            background: #0f172a;
-            color: #fff;
-            padding: 8px 20px;
-            border-radius: 100px;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-            box-shadow: var(--shadow-tag);
-        }
-
-        header h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 900;
-            letter-spacing: -1px;
-            color: #0f172a;
-            line-height: 1.2;
-        }
-
-        /* BARRE DE RECHERCHE ACCENTUÉE */
-        .search-wrapper {
-            max-width: 650px;
-            margin: 0 auto 40px auto;
             position: relative;
+            padding: 80px 0 60px;
+            text-align: center;
+            animation: slideDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-warm), var(--accent-blue));
+            color: white;
+            padding: 10px 24px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3);
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Epilogue', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            letter-spacing: -2px;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: var(--text-sub);
+            font-weight: 500;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        /* ====== NAVIGATION FLOTTANTE ====== */
+        nav {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            padding: 12px 20px;
+            border-radius: 999px;
+            z-index: 100;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* ====== SEARCH AMÉLIORÉE ====== */
+        .search-container {
+            position: relative;
+            max-width: 520px;
+            margin: 0 auto 80px;
+            animation: fadeInUp 0.8s ease 0.5s both;
         }
 
         .search-input {
             width: 100%;
-            padding: 18px 24px;
-            padding-left: 55px;
+            padding: 16px 20px 16px 50px;
+            border: 2px solid transparent;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
             border-radius: 20px;
-            border: 3px solid #0f172a;
-            background: #ffffff;
+            font-family: inherit;
             font-size: 16px;
-            font-weight: 600;
+            font-weight: 500;
             color: var(--text-main);
-            box-shadow: var(--shadow-deep);
-            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
-        .search-wrapper i {
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            background: white;
+            box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .search-icon {
             position: absolute;
-            left: 22px;
+            left: 18px;
             top: 50%;
             transform: translateY(-50%);
-            color: #0f172a;
-            font-size: 20px;
+            color: var(--accent-warm);
+            font-size: 18px;
         }
 
-        /* SECTION TILES (BLOCS MAJEURS) */
-        .section-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.8rem;
+        /* ====== MODAL PERSONNE ====== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 28px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2);
+            animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .modal-name {
+            font-family: 'Epilogue', sans-serif;
+            font-size: 2rem;
             font-weight: 900;
-            margin: 40px 0 20px 0;
-            padding-bottom: 10px;
-            border-bottom: 4px solid #0f172a;
-            color: #0f172a;
+            color: var(--primary);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-sub);
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+            color: var(--primary);
+        }
+
+        .modal-section {
+            margin-bottom: 30px;
+        }
+
+        .modal-section-title {
+            font-weight: 700;
+            color: var(--text-sub);
+            font-size: 12px;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .modal-slot {
+            padding: 12px 16px;
+            background: #f3f4f6;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            border-left: 4px solid var(--accent-blue);
+        }
+
+        .modal-slot.prep {
+            border-left-color: var(--accent-green);
+        }
+
+        .modal-slot.cleanup {
+            border-left-color: var(--accent-warm);
+        }
+
+        /* ====== SECTIONS ====== */
+        section {
+            margin-bottom: 100px;
+            animation: fadeInUp 0.8s ease both;
+        }
+
+        section:nth-of-type(2) { animation-delay: 0.1s; }
+        section:nth-of-type(3) { animation-delay: 0.2s; }
+        section:nth-of-type(4) { animation-delay: 0.3s; }
+
+        .section-header {
             display: flex;
             align-items: center;
-            gap: 10px;
-        }
-
-        /* BENTO GRID */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 25px;
-        }
-
-        .bento-card {
-            background: #ffffff;
-            border: 2px solid #e2e8f0;
-            border-radius: 24px;
-            padding: 25px;
-            box-shadow: var(--shadow-deep);
+            gap: 16px;
+            margin-bottom: 40px;
             position: relative;
-            transition: transform 0.2s ease;
+            padding-bottom: 24px;
         }
 
-        .bento-card:hover {
-            transform: translateY(-3px);
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            width: 100%;
+            background: linear-gradient(90deg, var(--section-color), transparent);
+            border-radius: 2px;
         }
 
-        .size-12 { grid-column: span 12; }
-        .size-6 { grid-column: span 6; }
-        .size-4 { grid-column: span 4; }
-
-        @media (max-width: 992px) {
-            .size-6, .size-4 { grid-column: span 12; }
+        .section-icon {
+            font-size: 32px;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
         }
 
-        .bento-card h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.3rem;
+        h2 {
+            font-family: 'Epilogue', sans-serif;
+            font-size: 2rem;
             font-weight: 800;
-            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .section-time {
+            font-size: 14px;
+            color: var(--text-sub);
+            font-weight: 500;
+            margin-left: auto;
+        }
+
+        /* ====== GRILLES BENTO ====== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .grid.wide {
+            grid-template-columns: 1fr;
+        }
+
+        /* ====== CARTES MODERNES ====== */
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 28px;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15);
+            background: white;
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .card-header {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #edf2f7;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.05);
         }
 
-        /* TIMELINE CONTRASTÉE */
+        .card-icon {
+            font-size: 24px;
+        }
+
+        .card h3 {
+            font-family: 'Epilogue', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* ====== TIMELINE SLOTS ====== */
         .timeline {
             display: flex;
             flex-direction: column;
@@ -165,292 +412,678 @@
         }
 
         .time-slot {
-            display: grid;
-            grid-template-columns: 120px 1fr;
+            display: flex;
             align-items: center;
-            padding: 12px 16px;
-            border-radius: 16px;
-            background: #f8fafc;
-            border: 1px solid #cbd5e1;
-            box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
+            gap: 16px;
+            padding: 16px 18px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2));
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 14px;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .time-tag {
-            font-size: 13px;
-            font-weight: 800;
-            color: #0f172a;
-            background: #e2e8f0;
-            padding: 4px 8px;
-            border-radius: 8px;
+        .time-slot:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5));
+            transform: translateX(4px);
+            border-color: var(--section-color);
+        }
+
+        .time-badge {
+            min-width: 100px;
+            padding: 8px 12px;
+            background: linear-gradient(135deg, var(--section-color), var(--section-color-light));
+            color: white;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 700;
             text-align: center;
-            border: 1px solid #94a3b8;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         .workers {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
-            margin-left: 10px;
+            gap: 8px;
+            flex: 1;
         }
 
-        /* BADGES NOMS ULTRA CONTRASTÉS */
         .person-tag {
-            padding: 6px 12px;
-            border-radius: 10px;
-            font-size: 13px;
+            padding: 6px 14px;
+            background: linear-gradient(135deg, var(--tag-bg), var(--tag-bg-light));
+            color: var(--tag-color);
+            border-radius: 12px;
+            font-size: 12px;
             font-weight: 700;
-            box-shadow: var(--shadow-tag);
-            border: 2px solid transparent;
-            display: inline-block;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            cursor: pointer;
         }
 
-        /* Couleurs dédiées par pôle */
-        .tag-ven { background-color: var(--color-ven-bg); color: var(--color-ven); border-color: var(--color-ven); }
-        .tag-burger { background-color: var(--color-burger-bg); color: var(--color-burger); border-color: var(--color-burger); }
-        .tag-bar { background-color: var(--color-bar-bg); color: var(--color-bar); border-color: var(--color-bar); }
-        .tag-caisse { background-color: var(--color-caisse-bg); color: var(--color-caisse); border-color: var(--color-caisse); }
-        .tag-log { background-color: var(--color-log-bg); color: var(--color-log); border-color: var(--color-log); }
-
-        .info-sub {
-            font-size: 11px;
-            color: #ef4444;
-            font-weight: 700;
-            width: 100%;
-            margin-top: 4px;
-            display: block;
+        .person-tag:hover {
+            transform: scale(1.08) translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
         }
 
-        /* ALERTE ATTENTE VALÉRY */
-        .alert-waiting {
-            background: #fff7ed;
-            border: 3px dashed #ea580c;
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 30px;
-            display: flex;
+        .tag-ven { --tag-bg: #d1fae5; --tag-bg-light: #a7f3d0; --tag-color: #047857; }
+        .tag-burger { --tag-bg: #fee2e2; --tag-bg-light: #fecaca; --tag-color: #b91c1c; }
+        .tag-bar { --tag-bg: #dbeafe; --tag-bg-light: #bfdbfe; --tag-color: #1d4ed8; }
+        .tag-caisse { --tag-bg: #ede9fe; --tag-bg-light: #ddd6fe; --tag-color: #6d28d9; }
+        .tag-log { --tag-bg: #fef3c7; --tag-bg-light: #fde68a; --tag-color: #a16207; }
+        .tag-waiting { --tag-bg: #fef2f2; --tag-bg-light: #fee2e2; --tag-color: #dc2626; border: 1px dashed #dc2626 !important; }
+
+        .rush-indicator {
+            display: inline-flex;
             align-items: center;
-            gap: 15px;
-            box-shadow: var(--shadow-deep);
+            gap: 6px;
+            padding: 4px 10px;
+            background: linear-gradient(135deg, #ff6b6b, #ff8c8c);
+            color: white;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            margin-left: 8px;
+            animation: pulse 2s ease-in-out infinite;
         }
 
-        .alert-waiting i {
-            font-size: 30px;
-            color: #ea580c;
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
-        /* HIGHLIGHT FILTRE RECHERCHE */
-        .highlight-card {
-            border: 3px solid #0f172a !important;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2) !important;
+        /* ====== CONFIGURATIONS PAR SECTION ====== */
+        #prep { --section-color: #10b981; --section-color-light: #6ee7b7; }
+        #event { --section-color: #3b82f6; --section-color-light: #93c5fd; }
+        #cleanup { --section-color: #f97316; --section-color-light: #fed7aa; }
+
+        /* ====== SECTION ATTENTE ====== */
+        .waiting-section {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.05), rgba(239, 68, 68, 0.05));
+            border: 2px dashed rgba(220, 38, 38, 0.3);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 100px;
+            text-align: center;
         }
 
-        .active-glow {
-            background-color: #0f172a !important;
-            color: #ffffff !important;
-            border-color: #0f172a !important;
-            transform: scale(1.1);
+        .waiting-title {
+            font-family: 'Epilogue', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #7f1d1d;
+            margin-bottom: 12px;
         }
 
-        .blur-card {
-            opacity: 0.3;
+        .waiting-text {
+            color: var(--text-sub);
+            font-size: 14px;
+        }
+
+        .waiting-names {
+            margin-top: 16px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .waiting-tag {
+            padding: 8px 16px;
+            background: white;
+            border: 2px dashed #dc2626;
+            color: #dc2626;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 768px) {
+            header {
+                padding: 60px 0 40px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .section-time {
+                margin-left: 0;
+                margin-top: 8px;
+            }
+
+            nav {
+                bottom: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .time-slot {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .workers {
+                width: 100%;
+            }
+
+            .modal-content {
+                padding: 24px;
+                width: 95%;
+            }
+
+            .modal-name {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* ====== SCROLLING ANIMATIONS ====== */
+        .fade-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .fade-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ====== FOOTER ====== */
+        footer {
+            text-align: center;
+            padding: 60px 0;
+            font-size: 13px;
+            color: var(--text-sub);
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .footer-emoji {
+            font-size: 32px;
+            margin-bottom: 16px;
         }
     </style>
 </head>
 <body>
 
-<div class="app-container">
-    
+<nav id="nav-float">
+    <a onclick="scrollToSection('waiting')">En attente</a>
+    <a onclick="scrollToSection('prep')">Préparation</a>
+    <a onclick="scrollToSection('event')">Samedi</a>
+    <a onclick="scrollToSection('cleanup')">Rangement</a>
+</nav>
+
+<!-- MODAL PERSONNE -->
+<div id="personModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="modal-name" id="personName"></div>
+            <button class="modal-close" onclick="closeModal()">✕</button>
+        </div>
+        <div id="personSchedule"></div>
+    </div>
+</div>
+
+<div class="container">
+
     <header>
-        <div class="year-badge">PLANNING OFFICIEL 2026</div>
+        <div class="badge">🎉 PLANNING OFFICIEL 2026</div>
         <h1>Fête des Maternelles</h1>
+        <p class="subtitle">12-13 juin • Tout le monde coordonné • Zéro stress</p>
     </header>
 
-    <div class="alert-waiting" data-tags="valéry valery">
-        <i class="fa-solid fa-hourglass-half"></i>
-        <div>
-            <strong style="color: #c2410c; font-size: 16px;">⏳ STATUT EN ATTENTE : Valéry</strong>
-            <p style="color: #7c2d12; font-size: 14px; margin-top: 2px;">Présent le samedi 13/06. Positionné temporairement en renfort volant. En attente de ses heures exactes de disponibilité.</p>
+    <div class="search-container">
+        <i class="fa-solid fa-user-tag search-icon"></i>
+        <input type="text" id="globalSearch" class="search-input" placeholder="Cherche un prénom (clique sur nom)..." oninput="liveSearch(this.value)">
+    </div>
+
+    <!-- SECTION EN ATTENTE -->
+    <section id="waiting" class="fade-on-scroll">
+        <div class="waiting-section">
+            <div class="waiting-title">⏳ En Attente de Confirmation</div>
+            <p class="waiting-text">Disponibilités non confirmées</p>
+            <div class="waiting-names">
+                <div class="waiting-tag cursor-help" onclick="openPersonModal('Valéry')">Valéry</div>
+                <div class="waiting-tag cursor-help" onclick="openPersonModal('Koon Yin')">Koon Yin</div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div class="search-wrapper">
-        <input type="text" id="globalSearch" class="search-input" placeholder="Rechercher un prénom (ex: Gil, Jennifer, Valéry, Bilal)..." oninput="dynamicSearch(this.value)">
-        <i class="fa-solid fa-user-tag"></i>
-    </div>
+    <!-- PRÉPARATION VENDREDI -->
+    <section id="prep" class="fade-on-scroll">
+        <div class="section-header">
+            <span class="section-icon">🔧</span>
+            <h2>Vendredi 12/06</h2>
+            <span class="section-time">Montage & Logistique</span>
+        </div>
 
-    <div class="section-title" style="color: var(--color-ven); border-color: var(--color-ven);"><i class="fa-solid fa-hammer"></i> BLOC 1 : PRÉPARATION (Vendredi 12/06)</div>
-    <div class="bento-grid">
-        <div class="bento-card size-12" data-tags="gil alain christophe nicolas alex jennifer sandra hynd hoi yu kiki bilal valéry laura">
-            <h2><i class="fa-solid fa-toolbox" style="color: var(--color-ven);"></i> Montage & Logistique Matérielle</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
-                <div style="background: #f1f5f9; padding: 15px; border-radius: 16px; border: 1px solid #cbd5e1;">
-                    <span class="time-tag">16:30 - 18:30</span>
-                    <div class="workers" style="margin-top: 10px;">
-                        <span class="person-tag tag-ven name">Gil</span>
-                        <span class="person-tag tag-ven name">Alain</span>
-                        <span class="person-tag tag-ven name">Christophe</span>
-                        <span class="person-tag tag-ven name">Nicolas</span>
+        <div class="grid wide">
+            <div class="card fade-on-scroll">
+                <div class="card-header">
+                    <span class="card-icon">🔨</span>
+                    <h3>Montage Général</h3>
+                </div>
+                <div class="timeline">
+                    <div class="time-slot">
+                        <div class="time-badge">16:30–17:30</div>
+                        <div class="workers">
+                            <span class="person-tag tag-ven name" onclick="openPersonModal(this.innerText)">Gil</span>
+                            <span class="person-tag tag-ven name" onclick="openPersonModal(this.innerText)">Alain</span>
+                            <span class="person-tag tag-ven name" onclick="openPersonModal(this.innerText)">Christophe</span>
+                            <span class="person-tag tag-ven name" onclick="openPersonModal(this.innerText)">Nicolas</span>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-badge">17:00–18:30</div>
+                        <div class="workers">
+                            <span class="person-tag tag-ven name" onclick="openPersonModal(this.innerText)">Alex</span>
+                            <span class="person-tag tag-ven name" onclick="openPersonModal(this.innerText)">Jennifer</span>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-badge">17:30–20:00</div>
+                        <div class="workers">
+                            <span class="person-tag tag-ven name" onclick="openPersonModal(this.innerText)">Sandra</span>
+                            <span class="person-tag tag-ven name" onclick="openPersonModal(this.innerText)">Hynd</span>
+                            <span class="person-tag tag-ven name" onclick="openPersonModal(this.innerText)">Kiki</span>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-badge">18:00–20:00</div>
+                        <div class="workers">
+                            <span class="person-tag tag-ven name" onclick="openPersonModal(this.innerText)">Bilal</span>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-badge">18:30+</div>
+                        <div class="workers">
+                            <span class="person-tag tag-ven name" onclick="openPersonModal(this.innerText)">Hoi Yu</span>
+                            <span class="person-tag tag-ven name" onclick="openPersonModal(this.innerText)">Laura</span>
+                        </div>
                     </div>
                 </div>
-                <div style="background: #f1f5f9; padding: 15px; border-radius: 16px; border: 1px solid #cbd5e1;">
-                    <span class="time-tag">Dès 17:00</span>
-                    <div class="workers" style="margin-top: 10px;"><span class="person-tag tag-ven name">Alex</span></div>
-                    <span class="time-tag" style="margin-top: 10px; display:inline-block;">Dès 17:15</span>
-                    <div class="workers" style="margin-top: 5px;"><span class="person-tag tag-ven name">Jennifer</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SAMEDI ÉVÉNEMENT -->
+    <section id="event" class="fade-on-scroll">
+        <div class="section-header">
+            <span class="section-icon">🎪</span>
+            <h2>Samedi 13/06</h2>
+            <span class="section-time">10:00–17:00 Fête</span>
+        </div>
+
+        <div class="grid">
+            <!-- Grill & Burgers -->
+            <div class="card fade-on-scroll">
+                <div class="card-header">
+                    <span class="card-icon">🔥</span>
+                    <h3>Grill & Burgers</h3>
                 </div>
-                <div style="background: #f1f5f9; padding: 15px; border-radius: 16px; border: 1px solid #cbd5e1;">
-                    <span class="time-tag">Dès 17:30</span>
-                    <div class="workers" style="margin-top: 10px;">
-                        <span class="person-tag tag-ven name">Sandra</span>
-                        <span class="person-tag tag-ven name">Hynd</span>
+                <div class="timeline">
+                    <div class="time-slot"><div class="time-badge">Avant 10:00</div><div class="workers"><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Alain</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Bilal</span></div></div>
+                    <div class="time-slot"><div class="time-badge">10:00–11:00</div><div class="workers"><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Juliana</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Bilal</span></div></div>
+                    <div class="time-slot"><div class="time-badge">11:00–12:00</div><div class="workers"><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Juliana</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Bilal</span></div></div>
+                    <div class="time-slot" style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 140, 140, 0.1));"><div class="time-badge">12:00–13:00</div><div class="workers"><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Alain</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Bilal</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Gil</span><span class="rush-indicator">🔥 RUSH</span></div></div>
+                    <div class="time-slot" style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 140, 140, 0.1));"><div class="time-badge">13:00–14:00</div><div class="workers"><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Alain</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Bilal</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Gil</span></div></div>
+                    <div class="time-slot"><div class="time-badge">14:00–17:00</div><div class="workers"><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Juliana</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Alain</span></div></div>
+                </div>
+            </div>
+
+            <!-- Bar & Boissons -->
+            <div class="card fade-on-scroll">
+                <div class="card-header">
+                    <span class="card-icon">🍺</span>
+                    <h3>Bar & Boissons</h3>
+                </div>
+                <div class="timeline">
+                    <div class="time-slot"><div class="time-badge">Avant 10:00</div><div class="workers"><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Daniela</span></div></div>
+                    <div class="time-slot"><div class="time-badge">10:00–11:00</div><div class="workers"><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Daniela</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Sandra</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Laura</span></div></div>
+                    <div class="time-slot"><div class="time-badge">11:00–12:00</div><div class="workers"><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Daniela</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Sandra</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Laura</span></div></div>
+                    <div class="time-slot" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 197, 253, 0.1));"><div class="time-badge">12:00–13:00</div><div class="workers"><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Sandra</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Daniela</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Alex</span><span class="rush-indicator">🔥 RUSH</span></div></div>
+                    <div class="time-slot" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 197, 253, 0.1));"><div class="time-badge">13:00–14:00</div><div class="workers"><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Sandra</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Daniela</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Alex</span></div></div>
+                    <div class="time-slot"><div class="time-badge">14:00–15:00</div><div class="workers"><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Daniela</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Laura</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Gil</span><span style="font-size: 11px; color: var(--text-sub); margin-left: 6px;">⏸ Pause spectacle</span></div></div>
+                    <div class="time-slot"><div class="time-badge">15:00–17:00</div><div class="workers"><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Daniela</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Laura</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Gil</span></div></div>
+                </div>
+            </div>
+
+            <!-- Caisse -->
+            <div class="card fade-on-scroll">
+                <div class="card-header">
+                    <span class="card-icon">🎟️</span>
+                    <h3>Caisse Principale</h3>
+                </div>
+                <div class="timeline">
+                    <div class="time-slot"><div class="time-badge">Avant 10:00</div><div class="workers"><span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Jennifer</span><span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Kiki</span></div></div>
+                    <div class="time-slot"><div class="time-badge">10:00–12:00</div><div class="workers"><span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Jennifer</span><span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Alex</span></div></div>
+                    <div class="time-slot"><div class="time-badge">12:00–14:00</div><div class="workers"><span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Jennifer</span><span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Domi</span><span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Juliana</span></div></div>
+                    <div class="time-slot"><div class="time-badge">14:00–17:00</div><div class="workers"><span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Jennifer</span><span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Alex</span></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flux Annexes -->
+        <div class="grid wide">
+            <div class="card fade-on-scroll">
+                <div class="card-header">
+                    <span class="card-icon">⚡</span>
+                    <h3>Flux Annexes</h3>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                    <div>
+                        <p style="font-weight: 700; color: var(--text-sub); margin-bottom: 12px;">🍿 Stand Popcorn (10:00–17:00)</p>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <span class="person-tag tag-log name" onclick="openPersonModal(this.innerText)">Hoi Yu</span>
+                            <span class="person-tag tag-log name" onclick="openPersonModal(this.innerText)">Koon Yin</span>
+                        </div>
                     </div>
-                    <span class="time-tag" style="margin-top: 10px; display:inline-block;">17:40 - 18:00</span>
-                    <div class="workers" style="margin-top: 5px;"><span class="person-tag tag-ven name">Hoi Yu</span></div>
-                </div>
-                <div style="background: #f1f5f9; padding: 15px; border-radius: 16px; border: 1px solid #cbd5e1;">
-                    <span class="time-tag">Dès 18:00</span>
-                    <div class="workers" style="margin-top: 10px;">
-                        <span class="person-tag tag-ven name">Kiki</span>
-                        <span class="person-tag tag-ven name">Bilal</span>
-                        <span class="person-tag tag-ven name">Valéry</span>
+                    <div>
+                        <p style="font-weight: 700; color: var(--text-sub); margin-bottom: 12px;">🚨 Coordination Mobile (08:00–23:00)</p>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <span class="person-tag tag-log name" onclick="openPersonModal(this.innerText)">Nicolas</span>
+                            <span class="person-tag tag-waiting name" onclick="openPersonModal(this.innerText)">Valéry</span>
+                        </div>
                     </div>
-                    <span class="time-tag" style="margin-top: 10px; display:inline-block;">Dès 19:00</span>
-                    <div class="workers" style="margin-top: 5px;"><span class="person-tag tag-ven name">Laura</span></div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="section-title" style="color: var(--color-bar); border-color: var(--color-bar);"><i class="fa-solid fa-store"></i> BLOC 2 : LE DÉROULEMENT DE LA FÊTE (Samedi 13/06)</div>
-    
-    <div style="background: #fff; padding: 15px; border-radius: 16px; margin-bottom: 25px; border: 2px solid var(--color-burger); box-shadow: var(--shadow-deep);">
-        <h3 style="color: var(--color-burger); font-weight: 800;"><i class="fa-solid fa-circle-exclamation"></i> OBJECTIF MAXIMISATION COMMANDE COMMERCIALE :</h3>
-        <p style="font-size: 14px; color: #475569; margin-top: 4px;">Grâce à l'intégration de <strong>Gil</strong>, le Grill (Burgers) et le Bar atteignent leur niveau d'encadrement le plus haut possible aux heures critiques du midi et de l'après-midi.</p>
-    </div>
-
-    <div class="bento-grid">
-        <div class="bento-card size-4" style="border-top: 6px solid var(--color-burger);" data-tags="hot-dogs hamburgers alain bilal juliana gil">
-            <h2 style="color: var(--color-burger);"><i class="fa-solid fa-fire"></i> 🌭 Grill & Burgers (Optimisé)</h2>
-            <div class="timeline">
-                <div class="time-slot"><div class="time-tag">Avant 10:00</div><div class="workers"><span class="person-tag tag-burger name">Alain</span><span class="person-tag tag-burger name">Bilal</span></div></div>
-                <div class="time-slot"><div class="time-tag">10:00 - 11:00</div><div class="workers"><span class="person-tag tag-burger name">Juliana</span><span class="person-tag tag-burger name">Bilal</span></div></div>
-                <div class="time-slot" style="background: #fff5f5; border-color: #fecaca;"><div class="time-tag">11:00 - 12:00</div><div class="workers"><span class="person-tag tag-burger name">Juliana</span><span class="person-tag tag-burger name">Bilal</span><span class="person-tag tag-burger name" style="background-color: #ef4444; color: #fff;">Gil (Renfort)</span></div></div>
-                <div class="time-slot" style="background: #fef2f2; border-color: #fca5a5;"><div class="time-tag">12:00 - 13:00</div><div class="workers"><span class="person-tag tag-burger name">Alain</span><span class="person-tag tag-burger name">Bilal</span><span class="person-tag tag-burger name" style="background-color: #ef4444; color: #fff;">Gil (Renfort)</span><span class="info-sub">🔥 RUSH MIDI</span></div></div>
-                <div class="time-slot" style="background: #fef2f2; border-color: #fca5a5;"><div class="time-tag">13:00 - 14:00</div><div class="workers"><span class="person-tag tag-burger name">Alain</span><span class="person-tag tag-burger name">Bilal</span><span class="person-tag tag-burger name" style="background-color: #ef4444; color: #fff;">Gil (Renfort)</span></div></div>
-                <div class="time-slot"><div class="time-tag">14:00 - 15:00</div><div class="workers"><span class="person-tag tag-burger name">Juliana</span><span class="person-tag tag-burger name">Alain</span></div></div>
-                <div class="time-slot"><div class="time-tag">15:00 - 16:00</div><div class="workers"><span class="person-tag tag-burger name">Juliana</span><span class="person-tag tag-burger name">Alain</span></div></div>
-                <div class="time-slot"><div class="time-tag">16:00 - 17:00</div><div class="workers"><span class="person-tag tag-burger name">Juliana</span><span class="person-tag tag-burger name">Alain</span></div></div>
-            </div>
+    <!-- NETTOYAGE SAMEDI SOIR -->
+    <section id="cleanup" class="fade-on-scroll">
+        <div class="section-header">
+            <span class="section-icon">🧹</span>
+            <h2>Après 17:00</h2>
+            <span class="section-time">Clôture & Démontage</span>
         </div>
 
-        <div class="bento-card size-4" style="border-top: 6px solid var(--color-bar);" data-tags="bar boissons daniela sandra laura alex gil">
-            <h2 style="color: var(--color-bar);"><i class="fa-solid fa-beer-mug-empty"></i> 🍺 Bar & Boissons (Optimisé)</h2>
-            <div class="timeline">
-                <div class="time-slot"><div class="time-tag">Avant 10:00</div><div class="workers"><span class="person-tag tag-bar name">Daniela</span></div></div>
-                <div class="time-slot"><div class="time-tag">10:00 - 11:00</div><div class="workers"><span class="person-tag tag-bar name">Daniela</span><span class="person-tag tag-bar name">Sandra</span><span class="person-tag tag-bar name">Laura</span></div></div>
-                <div class="time-slot"><div class="time-tag">11:00 - 12:00</div><div class="workers"><span class="person-tag tag-bar name">Daniela</span><span class="person-tag tag-bar name">Sandra</span><span class="person-tag tag-bar name">Laura</span></div></div>
-                <div class="time-slot" style="background: #eff6ff;"><div class="time-tag">12:00 - 13:00</div><div class="workers"><span class="person-tag tag-bar name">Sandra</span><span class="person-tag tag-bar name">Daniela</span><span class="person-tag tag-bar name">Alex</span><span class="info-sub">🔥 RUSH MIDI</span></div></div>
-                <div class="time-slot" style="background: #eff6ff;"><div class="time-tag">13:00 - 14:00</div><div class="workers"><span class="person-tag tag-bar name">Sandra</span><span class="person-tag tag-bar name">Daniela</span><span class="person-tag tag-bar name">Alex</span></div></div>
-                <div class="time-slot" style="background: #f0fdf4; border-color: #bbf7d0;"><div class="time-tag">14:00 - 15:00</div><div class="workers"><span class="person-tag tag-bar name">Daniela</span><span class="person-tag tag-bar name">Laura</span><span class="person-tag tag-bar name" style="background-color: #2563eb; color: #fff;">Gil (Renfort)</span><span class="info-sub" style="color: #16a34a">⚠️ Sandra en pause spectacle</span></div></div>
-                <div class="time-slot" style="background: #f8fafc;"><div class="time-tag">15:00 - 16:00</div><div class="workers"><span class="person-tag tag-bar name">Daniela</span><span class="person-tag tag-bar name">Laura</span><span class="person-tag tag-bar name" style="background-color: #2563eb; color: #fff;">Gil (Renfort)</span></div></div>
-                <div class="time-slot" style="background: #f8fafc;"><div class="time-tag">16:00 - 17:00</div><div class="workers"><span class="person-tag tag-bar name">Daniela</span><span class="person-tag tag-bar name">Laura</span><span class="person-tag tag-bar name" style="background-color: #2563eb; color: #fff;">Gil (Renfort)</span></div></div>
-            </div>
-        </div>
-
-        <div class="bento-card size-4" style="border-top: 6px solid var(--color-caisse);" data-tags="caisse jetons jennifer laura kiki alex domi juliana">
-            <h2 style="color: var(--color-caisse);"><i class="fa-solid fa-basket-shopping"></i> 🎟️ Caisse Principale</h2>
-            <div class="timeline">
-                <div class="time-slot"><div class="time-tag">Avant 10:00</div><div class="workers"><span class="person-tag tag-caisse name">Jennifer</span><span class="person-tag tag-caisse name">Kiki</span></div></div>
-                <div class="time-slot"><div class="time-tag">10:00 - 11:00</div><div class="workers"><span class="person-tag tag-caisse name">Jennifer</span><span class="person-tag tag-caisse name">Alex</span></div></div>
-                <div class="time-slot"><div class="time-tag">11:00 - 12:00</div><div class="workers"><span class="person-tag tag-caisse name">Jennifer</span><span class="person-tag tag-caisse name">Alex</span></div></div>
-                <div class="time-slot"><div class="time-tag">12:00 - 13:00</div><div class="workers"><span class="person-tag tag-caisse name">Jennifer</span><span class="person-tag tag-caisse name">Domi</span><span class="person-tag tag-caisse name">Juliana</span></div></div>
-                <div class="time-slot"><div class="time-tag">13:00 - 14:00</div><div class="workers"><span class="person-tag tag-caisse name">Jennifer</span><span class="person-tag tag-caisse name">Domi</span><span class="person-tag tag-caisse name">Juliana</span></div></div>
-                <div class="time-slot"><div class="time-tag">14:00 - 15:00</div><div class="workers"><span class="person-tag tag-caisse name">Jennifer</span><span class="person-tag tag-caisse name">Alex</span></div></div>
-                <div class="time-slot"><div class="time-tag">15:00 - 16:00</div><div class="workers"><span class="person-tag tag-caisse name">Jennifer</span><span class="person-tag tag-caisse name">Alex</span></div></div>
-                <div class="time-slot"><div class="time-tag">16:00 - 17:00</div><div class="workers"><span class="person-tag tag-caisse name">Jennifer</span><span class="person-tag tag-caisse name">Alex</span></div></div>
-            </div>
-        </div>
-
-        <div class="bento-card size-12" style="border-top: 6px solid var(--color-log);" data-tags="popcorn barbapapa hoi yu koon yin volant nicolas valéry valery christophe">
-            <h2><i class="fa-solid fa-arrows-spin"></i> Flux Annexes & Supervision Interne (10:00 - 17:00)</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-                <div>
-                    <h3 style="font-size: 14px; font-weight:700; color: var(--text-sub); margin-bottom: 10px;"><i class="fa-solid fa-candy-cane"></i> Stand Sucré Popcorn</h3>
-                    <div class="time-slot"><div class="time-tag">10h - 17h</div><div class="workers"><span class="person-tag tag-log name">Hoi Yu</span><span class="person-tag tag-log name">Koon Yin</span><span class="info-sub" style="color: var(--color-log)">Soutien permanent machine</span></div></div>
+        <div class="grid wide">
+            <div class="card fade-on-scroll">
+                <div class="card-header">
+                    <span class="card-icon">📦</span>
+                    <h3>Démontage Général</h3>
                 </div>
-                <div>
-                    <h3 style="font-size: 14px; font-weight:700; color: var(--text-sub); margin-bottom: 10px;"><i class="fa-solid fa-eye"></i> Coordination Volante</h3>
-                    <div class="time-slot"><div class="time-tag">10h - 17h</div><div class="workers"><span class="person-tag tag-log name">Nicolas</span><span class="person-tag tag-log name" style="border: 2px dashed #ea580c">Valéry (Attente)</span><span class="info-sub" style="color: #475569">Interventions techniques et logistiques</span></div></div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
+                    <div style="padding: 18px; background: linear-gradient(135deg, rgba(254, 226, 226, 0.5), rgba(254, 202, 202, 0.5)); border-radius: 16px; border: 1px solid rgba(185, 28, 28, 0.2);">
+                        <p style="font-weight: 700; color: var(--text-main); margin-bottom: 12px;">🍔 Restauration</p>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Bilal</span>
+                            <span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Alain</span>
+                            <span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Gil</span>
+                        </div>
+                    </div>
+                    <div style="padding: 18px; background: linear-gradient(135deg, rgba(219, 234, 254, 0.5), rgba(191, 219, 254, 0.5)); border-radius: 16px; border: 1px solid rgba(29, 78, 216, 0.2);">
+                        <p style="font-weight: 700; color: var(--text-main); margin-bottom: 12px;">🍺 Bar & Fûts</p>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Sandra</span>
+                            <span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Jennifer</span>
+                        </div>
+                    </div>
+                    <div style="padding: 18px; background: linear-gradient(135deg, rgba(237, 233, 254, 0.5), rgba(221, 214, 254, 0.5)); border-radius: 16px; border: 1px solid rgba(109, 40, 217, 0.2);">
+                        <p style="font-weight: 700; color: var(--text-main); margin-bottom: 12px;">🎟️ Comptes Caisse</p>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Alex</span>
+                            <span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Laura</span>
+                        </div>
+                    </div>
+                    <div style="padding: 18px; background: linear-gradient(135deg, rgba(254, 243, 199, 0.5), rgba(253, 230, 138, 0.5)); border-radius: 16px; border: 1px solid rgba(161, 98, 7, 0.2);">
+                        <p style="font-weight: 700; color: var(--text-main); margin-bottom: 12px;">🚨 Déconstruction</p>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <span class="person-tag tag-log name" onclick="openPersonModal(this.innerText)">Nicolas</span>
+                            <span class="person-tag tag-log name" onclick="openPersonModal(this.innerText)">Christophe</span>
+                            <span class="person-tag tag-log name" onclick="openPersonModal(this.innerText)">Hoi Yu</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="section-title" style="color: #0f172a; border-color: #0f172a;"><i class="fa-solid fa-dumpster"></i> BLOC 3 : NETTOYAGE & RANGEMENT (Samedi 13/06 après 17h00)</div>
-    <div class="bento-grid">
-        <div class="bento-card size-12" data-tags="bilal alain sandra jennifer alex laura nicolas christophe hoi yu gil">
-            <h2><i class="fa-solid fa-dolly"></i> Clôture des stands & Démontage général</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
-                <div style="background: #fff; padding: 15px; border-radius: 16px; border: 2px solid var(--color-burger);">
-                    <strong style="color: var(--color-burger); display:block; margin-bottom:8px;">🍔 Restauration</strong>
-                    <span class="person-tag tag-burger name">Bilal</span>
-                    <span class="person-tag tag-burger name">Alain</span>
-                    <span class="person-tag tag-burger name">Gil (Jusqu'à 18h)</span>
-                </div>
-                <div style="background: #fff; padding: 15px; border-radius: 16px; border: 2px solid var(--color-bar);">
-                    <strong style="color: var(--color-bar); display:block; margin-bottom:8px;">🍺 Bar & Fûts</strong>
-                    <span class="person-tag tag-bar name">Sandra</span>
-                    <span class="person-tag tag-bar name">Jennifer</span>
-                </div>
-                <div style="background: #fff; padding: 15px; border-radius: 16px; border: 2px solid var(--color-caisse);">
-                    <strong style="color: var(--color-caisse); display:block; margin-bottom:8px;">🎟️ Comptes Caisse</strong>
-                    <span class="person-tag tag-caisse name">Alex</span>
-                    <span class="person-tag tag-caisse name">Laura</span>
-                </div>
-                <div style="background: #fff; padding: 15px; border-radius: 16px; border: 2px solid var(--color-log);">
-                    <strong style="color: var(--color-log); display:block; margin-bottom:8px;">🚨 Gros Bras & Sucré</strong>
-                    <span class="person-tag tag-log name">Nicolas</span>
-                    <span class="person-tag tag-log name">Christophe</span>
-                    <span class="person-tag tag-log name">Hoi Yu</span>
-                </div>
-            </div>
-        </div>
-    </div>
+    <footer>
+        <div class="footer-emoji">✨</div>
+        <p>Merci à toutes et tous pour cette belle collaboration ! 🎉</p>
+    </footer>
 
 </div>
 
 <script>
-function dynamicSearch(val) {
-    const query = val.toLowerCase().trim();
-    const cards = document.querySelectorAll('.bento-card, .alert-waiting');
-    const allNames = document.querySelectorAll('.name');
+// BASE DE DONNÉES COMPLÈTE DES DISPONIBILITÉS
+const personData = {
+    'Gil': {
+        prep: 'Vendredi 16:30–18:30',
+        samedi: {
+            horaires: '11:00–18:00',
+            roles: ['Grill & Burgers', 'Bar (rush & après)']
+        },
+        cleanup: 'Restauration'
+    },
+    'Juliana': {
+        prep: '—',
+        samedi: {
+            horaires: '10:16+',
+            roles: ['Grill & Burgers', 'Caisse']
+        },
+        cleanup: '—'
+    },
+    'Daniela': {
+        prep: '—',
+        samedi: {
+            horaires: '09:00–17:00',
+            roles: ['Bar', 'Caisse']
+        },
+        cleanup: '—'
+    },
+    'Alex': {
+        prep: 'Vendredi 17:00–19:01',
+        samedi: {
+            horaires: '09:00–19:00',
+            roles: ['Caisse']
+        },
+        cleanup: 'Comptes Caisse'
+    },
+    'Alain': {
+        prep: 'Vendredi 16:30–19:30',
+        samedi: {
+            horaires: '09:00–19:00',
+            roles: ['Grill & Burgers', 'Bar']
+        },
+        cleanup: 'Restauration'
+    },
+    'Christophe': {
+        prep: 'Vendredi 16:30–20:00',
+        samedi: 'Après 16:30 ou avant 10h',
+        cleanup: 'Déconstruction'
+    },
+    'Nicolas': {
+        prep: 'Vendredi 16:30–23:00',
+        samedi: {
+            horaires: '08:00–23:00',
+            roles: ['Volant (aide coordination)']
+        },
+        cleanup: 'Déconstruction'
+    },
+    'Jennifer': {
+        prep: 'Vendredi 17:15–20:15',
+        samedi: {
+            horaires: '08:00–23:00',
+            roles: ['Caisse (toujours)', 'Bar']
+        },
+        cleanup: 'Bar & Fûts'
+    },
+    'Sandra': {
+        prep: 'Vendredi 17:30–20:00',
+        samedi: {
+            horaires: '08:30–18:00',
+            roles: ['Bar', 'Caisse'],
+            note: '⏸ Pause spectacle 2e maternelle'
+        },
+        cleanup: 'Bar & Fûts'
+    },
+    'Hoi Yu': {
+        prep: 'Vendredi 18:30+',
+        samedi: {
+            horaires: '10:00+',
+            roles: ['Popcorn/Barbe à papa']
+        },
+        cleanup: 'Déconstruction'
+    },
+    'Domi': {
+        prep: '—',
+        samedi: {
+            horaires: '11:30–14:00',
+            roles: ['Caisse']
+        },
+        cleanup: '—'
+    },
+    'Hynd': {
+        prep: 'Vendredi 17:30–21:00',
+        samedi: '—',
+        cleanup: '—'
+    },
+    'Laura': {
+        prep: 'Vendredi 19:00–23:00',
+        samedi: {
+            horaires: '07:00–20:00',
+            roles: ['Bar', 'Caisse']
+        },
+        cleanup: 'Comptes Caisse'
+    },
+    'Kiki': {
+        prep: 'Vendredi 18:00–21:00',
+        samedi: {
+            horaires: '08:00–10:00',
+            roles: ['Placement']
+        },
+        cleanup: '—'
+    },
+    'Bilal': {
+        prep: 'Vendredi 18:00–20:00',
+        samedi: {
+            horaires: '09:00–20:00',
+            roles: ['Grill & Burgers']
+        },
+        cleanup: 'Restauration'
+    },
+    'Koon Yin': {
+        prep: '—',
+        samedi: {
+            horaires: '10:00–17:00 (flexible)',
+            roles: ['Popcorn/Barbe à papa (aide)']
+        },
+        cleanup: '—',
+        note: 'Aide flexible, pas de poste fixe'
+    },
+    'Valéry': {
+        prep: '—',
+        samedi: 'En attente',
+        cleanup: '—',
+        note: 'Coordination mobile (volant) si disponible'
+    }
+};
 
-    if (!query) {
-        cards.forEach(c => c.classList.remove('blur-card', 'highlight-card'));
-        allNames.forEach(n => n.classList.remove('active-glow'));
-        return;
+function openPersonModal(name) {
+    const data = personData[name];
+    if (!data) return;
+
+    const modal = document.getElementById('personModal');
+    document.getElementById('personName').innerText = name;
+    
+    let html = '';
+    
+    if (data.prep !== '—') {
+        html += `<div class="modal-section prep">
+            <div class="modal-section-title">🔧 Vendredi 12/06</div>
+            <div class="modal-slot prep">${data.prep}</div>
+        </div>`;
+    }
+    
+    if (data.samedi && data.samedi !== '—') {
+        let samediHtml = `<div class="modal-section">
+            <div class="modal-section-title">🎪 Samedi 13/06</div>
+            <div class="modal-slot">📍 ${typeof data.samedi === 'object' ? data.samedi.horaires : data.samedi}</div>`;
+        if (typeof data.samedi === 'object' && data.samedi.roles) {
+            samediHtml += `<div class="modal-slot" style="margin-top: 8px; border-left-color: #8b5cf6;">📋 ${data.samedi.roles.join(', ')}</div>`;
+        }
+        if (typeof data.samedi === 'object' && data.samedi.note) {
+            samediHtml += `<div class="modal-slot" style="margin-top: 8px; border-left-color: #f97316;">ℹ️ ${data.samedi.note}</div>`;
+        }
+        samediHtml += `</div>`;
+        html += samediHtml;
+    }
+    
+    if (data.cleanup && data.cleanup !== '—') {
+        html += `<div class="modal-section cleanup">
+            <div class="modal-section-title">🧹 Après 17:00</div>
+            <div class="modal-slot cleanup">${data.cleanup}</div>
+        </div>`;
     }
 
-    cards.forEach(card => {
-        const tags = card.getAttribute('data-tags') || '';
-        if (tags.includes(query)) {
-            card.classList.remove('blur-card');
-            card.classList.add('highlight-card');
-        } else {
-            card.classList.remove('highlight-card');
-            card.classList.add('blur-card');
-        }
-    });
-
-    allNames.forEach(node => {
-        const text = node.textContent.toLowerCase();
-        if (text.includes(query) && query.length > 1) {
-            node.classList.add('active-glow');
-        } else {
-            node.classList.remove('active-glow');
-        }
-    });
+    if (data.note) {
+        html += `<div class="modal-section" style="background: #fef3c7; padding: 12px; border-radius: 12px;">
+            <div style="font-size: 13px; color: #92400e;">📌 ${data.note}</div>
+        </div>`;
+    }
+    
+    document.getElementById('personSchedule').innerHTML = html;
+    modal.classList.add('active');
 }
+
+function closeModal() {
+    document.getElementById('personModal').classList.remove('active');
+}
+
+function liveSearch(query) {
+    if (!query.trim()) return;
+    
+    const name = Object.keys(personData).find(n => 
+        n.toLowerCase().includes(query.toLowerCase())
+    );
+    
+    if (name) {
+        openPersonModal(name);
+    }
+}
+
+function scrollToSection(id) {
+    const section = document.getElementById(id);
+    section?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Fermer modal au clic sur le backdrop
+document.getElementById('personModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeModal();
+    }
+});
+
+// Animation au scroll
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-on-scroll').forEach(el => observer.observe(el));
 </script>
 
 </body>
