@@ -697,7 +697,7 @@
         <div class="badge">Planning</div>
         <h1>Fête des Maternelles</h1>
         <p class="subtitle">12-13 juin • Planning final</p>
-        <div style="margin-top: 14px; display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgba(0,0,0,0.05); border-radius: 999px; font-size: 11px; font-weight: 600; color: var(--text-sub); letter-spacing: 0.5px; animation: fadeInUp 0.8s ease 0.6s both;">✏️ Mis à jour le 08/06/2026</div>
+        <div id="update-tag" style="margin-top: 14px; display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgba(0,0,0,0.05); border-radius: 999px; font-size: 11px; font-weight: 600; color: var(--text-sub); letter-spacing: 0.5px; animation: fadeInUp 0.8s ease 0.6s both;"></div>
     </header>
 
     <div class="search-container">
@@ -1007,6 +1007,15 @@ function getPersonScheduleFromDOM(name) {
             const time = timeDiv?.innerText?.trim() || '';
             const cardTitle = tag.closest('.card')?.querySelector('h3')?.innerText?.trim() || '';
             schedule[section.id].push({ time, context: cardTitle });
+            return;
+        }
+
+        // Cas 3 : Flux Annexes (p label + flex div > person-tag)
+        const labelP = tag.parentElement?.parentElement?.querySelector('p');
+        if (labelP) {
+            const time = labelP.innerText.trim();
+            const cardTitle = tag.closest('.card')?.querySelector('h3')?.innerText?.trim() || '';
+            schedule[section.id].push({ time, context: cardTitle });
         }
     });
 
@@ -1290,6 +1299,15 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.fade-on-scroll').forEach(el => observer.observe(el));
+
+// Tag "Mis à jour" avec date et heure dynamiques
+(function() {
+    const now = new Date();
+    const d = now.toLocaleDateString('fr-BE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    const t = now.toLocaleTimeString('fr-BE', { hour: '2-digit', minute: '2-digit' });
+    const el = document.getElementById('update-tag');
+    if (el) el.innerText = '✏️ Mis à jour le ' + d + ' à ' + t;
+})();
 </script>
 
 </body>
