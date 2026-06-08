@@ -660,6 +660,7 @@
         <div class="badge">Planning</div>
         <h1>Fête des Maternelles</h1>
         <p class="subtitle">12-13 juin • Planning final</p>
+        <div style="margin-top: 14px; display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgba(0,0,0,0.05); border-radius: 999px; font-size: 11px; font-weight: 600; color: var(--text-sub); letter-spacing: 0.5px; animation: fadeInUp 0.8s ease 0.6s both;">✏️ Mis à jour le 08/06/2026</div>
     </header>
 
     <div class="search-container">
@@ -789,7 +790,7 @@
                     </div>
                     <div style="padding: 14px; background: linear-gradient(135deg, rgba(229, 231, 235, 0.5), rgba(209, 213, 219, 0.5)); border-radius: 14px; border-left: 4px solid var(--text-sub);">
                         <div style="font-weight: 700; color: var(--text-sub); margin-bottom: 8px;">Flexible</div>
-                        <span class="person-tag" style="background: #e5e7eb; color: var(--text-sub); border: 1px solid var(--text-sub);" onclick="openPersonModal(this.innerText)" style="display: inline-block;">Christophe</span>
+                        <span class="person-tag name" style="background: #e5e7eb; color: var(--text-sub); border: 1px solid var(--text-sub);" onclick="openPersonModal(this.innerText)">Christophe</span>
                     </div>
                 </div>
             </div>
@@ -919,7 +920,7 @@
                     <div style="padding: 14px; background: linear-gradient(135deg, rgba(229, 231, 235, 0.5), rgba(209, 213, 219, 0.5)); border-radius: 14px; border-left: 4px solid var(--text-sub);">
                         <div style="font-weight: 700; color: var(--text-sub); margin-bottom: 8px; font-size: 12px;">Après 16:30 (flexible)</div>
                         <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                            <span class="person-tag" style="background: #e5e7eb; color: var(--text-sub); border: 1px dashed var(--text-sub);" onclick="openPersonModal(this.innerText)">Christophe</span>
+                            <span class="person-tag name" style="background: #e5e7eb; color: var(--text-sub); border: 1px dashed var(--text-sub);" onclick="openPersonModal(this.innerText)">Christophe</span>
                         </div>
                     </div>
                     <div style="padding: 14px; background: linear-gradient(135deg, rgba(254, 243, 199, 0.5), rgba(253, 230, 138, 0.5)); border-radius: 14px; border-left: 4px solid var(--accent-warm);">
@@ -941,7 +942,128 @@
 </div>
 
 <script>
-// BASE DE DONNÉES COMPLÈTE DES DISPONIBILITÉS
+// ===== LECTURE DYNAMIQUE DU PLANNING DEPUIS LE DOM =====
+
+function getPersonScheduleFromDOM(name) {
+    const schedule = { prep: [], event: [], cleanup: [] };
+
+    document.querySelectorAll('.person-tag.name').forEach(tag => {
+        if (tag.innerText.trim() !== name.trim()) return;
+
+        const section = tag.closest('section');
+        if (!section || !schedule[section.id]) return;
+
+        // Cas 1 : dans un .time-slot (stands avec time-badge)
+        const timeSlot = tag.closest('.time-slot');
+        if (timeSlot) {
+            const time = timeSlot.querySelector('.time-badge')?.innerText?.trim() || '';
+            const cardTitle = tag.closest('.card')?.querySelector('h3')?.innerText?.trim() || '';
+            schedule[section.id].push({ time, context: cardTitle });
+            return;
+        }
+
+        // Cas 2 : dans un bloc padding (Avant 10h, Rangement)
+        const box = tag.closest('[style*="padding: 14px"]');
+        if (box) {
+            const timeDiv = box.querySelector('[style*="font-weight: 700"]');
+            const time = timeDiv?.innerText?.trim() || '';
+            const cardTitle = tag.closest('.card')?.querySelector('h3')?.innerText?.trim() || '';
+            schedule[section.id].push({ time, context: cardTitle });
+        }
+    });
+
+    // Entrée spéciale Laura : spectacle 10:45–12:00
+    if (name.trim() === 'Laura') {
+        schedule.event.push({ time: '10:45–12:00', context: 'Spectacle 🎭', special: true });
+    }
+
+    // Tri chronologique du samedi
+    schedule.event.sort((a, b) => {
+        const toMin = t => { const m = (t || '').match(/^(\d+):(\d+)/); return m ? +m[1] * 60 + +m[2] : 9999; };
+        return toMin(a.time) - toMin(b.time);
+    });
+
+    return schedule;
+}
+
+function openPersonModal(name) {
+    name = (name || '').trim();
+
+    // Cas spécial : en attente
+    if (name === 'Valéry') {
+        document.getElementById('personName').innerText = name;
+        document.getElementById('personSchedule').innerHTML = `
+            <div class="modal-section" style="background: #fef2f2; padding: 16px; border-radius: 12px;">
+                <div style="font-size: 14px; color: #dc2626; font-weight: 600;">⏳ En attente de confirmation</div>
+            </div>`;
+        document.getElementById('personModal').classList.add('active');
+        return;
+    }
+
+    const schedule = getPersonScheduleFromDOM(name);
+    if (!schedule.prep.length && !schedule.event.length && !schedule.cleanup.length) return;
+
+    document.getElementById('personName').innerText = name;
+    let html = '';
+
+    if (schedule.prep.length) {
+        html += `<div class="modal-section"><div class="modal-section-title">🔧 Vendredi 12/06</div>`;
+        schedule.prep.forEach(s => {
+            html += `<div class="modal-slot prep"><strong>${s.time}</strong>${s.context ? ' · ' + s.context : ''}</div>`;
+        });
+        html += `</div>`;
+    }
+
+    if (schedule.event.length) {
+        html += `<div class="modal-section"><div class="modal-section-title">🎪 Samedi 13/06</div>`;
+        schedule.event.forEach(s => {
+            const extra = s.special ? 'border-left-color: #8b5cf6; background: #f5f3ff;' : '';
+            html += `<div class="modal-slot" style="${extra}"><strong>${s.time}</strong>${s.context ? ' · ' + s.context : ''}</div>`;
+        });
+        html += `</div>`;
+    }
+
+    if (schedule.cleanup.length) {
+        html += `<div class="modal-section cleanup"><div class="modal-section-title">🧹 Après 17:00</div>`;
+        schedule.cleanup.forEach(s => {
+            html += `<div class="modal-slot cleanup"><strong>${s.time}</strong>${s.context ? ' · ' + s.context : ''}</div>`;
+        });
+        html += `</div>`;
+    }
+
+    document.getElementById('personSchedule').innerHTML = html;
+    document.getElementById('personModal').classList.add('active');
+}
+
+function closeModal() {
+    document.getElementById('personModal').classList.remove('active');
+}
+
+function getAllNames() {
+    const names = new Set();
+    document.querySelectorAll('.person-tag.name').forEach(t => {
+        const n = t.innerText.trim();
+        if (n) names.add(n);
+    });
+    return [...names];
+}
+
+function liveSearch(query) {
+    if (!query.trim()) { closeModal(); return; }
+    const name = getAllNames().find(n => n.toLowerCase().includes(query.toLowerCase()));
+    if (name) openPersonModal(name);
+}
+
+function scrollToSection(id) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Fermer modal au clic sur le backdrop
+document.getElementById('personModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+});
+
+// Ancienne structure — supprimée, remplacée par lecture DOM
 const personData = {
     'Gil': {
         prep: 'Vendredi 16:30–18:30',
@@ -1076,87 +1198,10 @@ const personData = {
     }
 };
 
-function openPersonModal(name) {
-    const data = personData[name];
-    if (!data) return;
-
-    const modal = document.getElementById('personModal');
-    document.getElementById('personName').innerText = name;
-    
-    let html = '';
-    
-    if (data.prep !== '—') {
-        html += `<div class="modal-section prep">
-            <div class="modal-section-title">🔧 Vendredi 12/06</div>
-            <div class="modal-slot prep">${data.prep}</div>
-        </div>`;
-    }
-    
-    if (data.samedi && data.samedi !== '—') {
-        let samediHtml = `<div class="modal-section">
-            <div class="modal-section-title">🎪 Samedi 13/06</div>
-            <div class="modal-slot">📍 ${typeof data.samedi === 'object' ? data.samedi.horaires : data.samedi}</div>`;
-        if (typeof data.samedi === 'object' && data.samedi.roles) {
-            samediHtml += `<div class="modal-slot" style="margin-top: 8px; border-left-color: #8b5cf6;">📋 ${data.samedi.roles.join(', ')}</div>`;
-        }
-        if (typeof data.samedi === 'object' && data.samedi.note) {
-            samediHtml += `<div class="modal-slot" style="margin-top: 8px; border-left-color: #f97316;">ℹ️ ${data.samedi.note}</div>`;
-        }
-        samediHtml += `</div>`;
-        html += samediHtml;
-    }
-    
-    if (data.cleanup && data.cleanup !== '—') {
-        html += `<div class="modal-section cleanup">
-            <div class="modal-section-title">🧹 Après 17:00</div>
-            <div class="modal-slot cleanup">${data.cleanup}</div>
-        </div>`;
-    }
-
-    if (data.note) {
-        html += `<div class="modal-section" style="background: #fef3c7; padding: 12px; border-radius: 12px;">
-            <div style="font-size: 13px; color: #92400e;">📌 ${data.note}</div>
-        </div>`;
-    }
-    
-    document.getElementById('personSchedule').innerHTML = html;
-    modal.classList.add('active');
-}
-
-function closeModal() {
-    document.getElementById('personModal').classList.remove('active');
-}
-
-function liveSearch(query) {
-    if (!query.trim()) return;
-    
-    const name = Object.keys(personData).find(n => 
-        n.toLowerCase().includes(query.toLowerCase())
-    );
-    
-    if (name) {
-        openPersonModal(name);
-    }
-}
-
-function scrollToSection(id) {
-    const section = document.getElementById(id);
-    section?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-// Fermer modal au clic sur le backdrop
-document.getElementById('personModal').addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeModal();
-    }
-});
-
 // Animation au scroll
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
     });
 }, { threshold: 0.1 });
 
