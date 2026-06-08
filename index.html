@@ -1,208 +1,325 @@
-<section class="planning-fete">
-  <style>
-    .planning-fete {
-      font-family: Arial, sans-serif;
-      background: #f6f8fb;
-      padding: 24px;
-      color: #222;
-    }
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    .planning-fete h1 {
-      text-align: center;
-      color: #00928E;
-      margin-bottom: 5px;
-    }
+<title>Fête des maternelles</title>
 
-    .planning-fete .subtitle {
-      text-align: center;
-      margin-bottom: 25px;
-      font-size: 18px;
-    }
+<style>
 
-    .time-block {
-      background: white;
-      border-radius: 14px;
-      padding: 18px;
-      margin-bottom: 18px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      border-left: 8px solid #00928E;
-    }
+:root{
+    --yellow:#FFD100;
+    --black:#111111;
+    --dark:#1A1A1A;
+    --light:#F5F5F5;
+}
 
-    .time-block h2 {
-      margin-top: 0;
-      color: #00928E;
-    }
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-    .stands {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 12px;
-    }
+body{
+    background:var(--black);
+    color:white;
+    font-family:Arial,Helvetica,sans-serif;
+    padding:20px;
+}
 
-    .stand {
-      border-radius: 12px;
-      padding: 14px;
-      background: #eef6f6;
-    }
+h1{
+    text-align:center;
+    color:var(--yellow);
+    margin-bottom:25px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
 
-    .stand h3 {
-      margin-top: 0;
-      font-size: 16px;
-    }
+.search{
+    max-width:800px;
+    margin:0 auto 30px auto;
+}
 
-    .hotdog { background: #ffe8d6; }
-    .bar { background: #dbeafe; }
-    .caisse { background: #ede9fe; }
-    .popcorn { background: #fef3c7; }
-    .volant { background: #dcfce7; }
-    .prep { background: #e5e7eb; }
-    .rangement { background: #fce7f3; }
+.search input{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+    background:#222;
+    color:white;
+}
 
-    ul {
-      margin: 0;
-      padding-left: 18px;
-    }
+#result{
+    display:none;
+    margin-top:15px;
+    background:white;
+    color:black;
+    padding:20px;
+    border-radius:12px;
+}
 
-    li {
-      margin-bottom: 4px;
-    }
+.grid{
+    overflow-x:auto;
+}
 
-    .note {
-      background: #fff7ed;
-      padding: 14px;
-      border-radius: 12px;
-      margin-top: 24px;
-      border-left: 6px solid #f97316;
-    }
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1100px;
+}
 
-    @media print {
-      .planning-fete {
-        background: white;
-        padding: 0;
-      }
+th{
+    background:var(--yellow);
+    color:black;
+    padding:15px;
+    font-size:16px;
+}
 
-      .time-block {
-        box-shadow: none;
-        break-inside: avoid;
-      }
-    }
-  </style>
+td{
+    border:1px solid #333;
+    padding:12px;
+    text-align:center;
+    vertical-align:middle;
+}
 
-  <h1>Planning – Fête des maternelles</h1>
-  <p class="subtitle">Samedi 13 juin – Fête de 10h00 à 17h00</p>
+tr:nth-child(even){
+    background:#181818;
+}
 
-  <div class="time-block prep">
-    <h2>Avant 10h00 – Préparation / placement</h2>
-    <ul>
-      <li>Nicolas – coordination générale / volant</li>
-      <li>Alex – installation générale</li>
-      <li>Alain – installation générale</li>
-      <li>Jennifer – installation générale</li>
-      <li>Laura – installation générale</li>
-      <li>Daniela – installation générale</li>
-      <li>Kiki – aide jusqu’à 10h00</li>
-      <li>Christophe – renfort possible avant 10h00</li>
-    </ul>
-  </div>
+.poste{
+    font-weight:bold;
+    background:#222;
+    color:var(--yellow);
+    min-width:180px;
+}
 
-  <div class="time-block">
-    <h2>10h00 - 11h00</h2>
-    <div class="stands">
-      <div class="stand hotdog"><h3>Hot-dogs / hamburgers</h3><ul><li>Alain</li><li>Bilal</li><li>Juliana</li></ul></div>
-      <div class="stand bar"><h3>Bar</h3><ul><li>Sandra</li><li>Jennifer</li></ul></div>
-      <div class="stand caisse"><h3>Caisse</h3><ul><li>Alex</li><li>Laura</li></ul></div>
-      <div class="stand popcorn"><h3>Popcorn / Barbe à papa</h3><ul><li>Hoi Yu</li></ul></div>
-      <div class="stand volant"><h3>Volant / dispatch</h3><ul><li>Nicolas</li></ul></div>
-    </div>
-  </div>
+.badge{
+    display:inline-block;
+    background:var(--yellow);
+    color:black;
+    padding:4px 8px;
+    margin:2px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+}
 
-  <div class="time-block">
-    <h2>11h00 - 12h00</h2>
-    <div class="stands">
-      <div class="stand hotdog"><h3>Hot-dogs / hamburgers</h3><ul><li>Alain</li><li>Bilal</li><li>Juliana</li></ul></div>
-      <div class="stand bar"><h3>Bar</h3><ul><li>Sandra</li><li>Jennifer</li></ul></div>
-      <div class="stand caisse"><h3>Caisse</h3><ul><li>Alex</li><li>Laura</li></ul></div>
-      <div class="stand popcorn"><h3>Popcorn / Barbe à papa</h3><ul><li>Hoi Yu</li></ul></div>
-      <div class="stand volant"><h3>Volant / dispatch</h3><ul><li>Nicolas</li></ul></div>
-    </div>
-  </div>
+</style>
+</head>
+<body>
 
-  <div class="time-block">
-    <h2>12h00 - 13h00 – Rush</h2>
-    <div class="stands">
-      <div class="stand hotdog"><h3>Hot-dogs / hamburgers</h3><ul><li>Alain</li><li>Bilal</li><li>Juliana</li></ul></div>
-      <div class="stand bar"><h3>Bar</h3><ul><li>Sandra</li><li>Jennifer</li><li>Daniela</li></ul></div>
-      <div class="stand caisse"><h3>Caisse</h3><ul><li>Alex</li><li>Laura</li><li>Domi dès 11h30</li></ul></div>
-      <div class="stand popcorn"><h3>Popcorn / Barbe à papa</h3><ul><li>Hoi Yu</li><li>Koon Yin en renfort</li></ul></div>
-      <div class="stand volant"><h3>Volant / dispatch</h3><ul><li>Nicolas</li></ul></div>
-    </div>
-  </div>
+<h1>Planning Général</h1>
 
-  <div class="time-block">
-    <h2>13h00 - 14h00 – Rush</h2>
-    <div class="stands">
-      <div class="stand hotdog"><h3>Hot-dogs / hamburgers</h3><ul><li>Alain</li><li>Bilal</li><li>Juliana</li></ul></div>
-      <div class="stand bar"><h3>Bar</h3><ul><li>Jennifer</li><li>Daniela</li></ul></div>
-      <div class="stand caisse"><h3>Caisse</h3><ul><li>Alex</li><li>Laura</li><li>Domi jusqu’à 14h00</li></ul></div>
-      <div class="stand popcorn"><h3>Popcorn / Barbe à papa</h3><ul><li>Hoi Yu</li><li>Koon Yin en renfort</li></ul></div>
-      <div class="stand volant"><h3>Volant / dispatch</h3><ul><li>Nicolas</li><li>Sandra en pause si besoin</li></ul></div>
-    </div>
-  </div>
+<div class="grid">
 
-  <div class="time-block">
-    <h2>14h00 - 15h00</h2>
-    <div class="stands">
-      <div class="stand hotdog"><h3>Hot-dogs / hamburgers</h3><ul><li>Alain</li><li>Bilal</li><li>Juliana</li></ul></div>
-      <div class="stand bar"><h3>Bar</h3><ul><li>Jennifer</li><li>Daniela</li></ul></div>
-      <div class="stand caisse"><h3>Caisse</h3><ul><li>Alex</li><li>Laura</li></ul></div>
-      <div class="stand popcorn"><h3>Popcorn / Barbe à papa</h3><ul><li>Hoi Yu</li></ul></div>
-      <div class="stand volant"><h3>Volant / dispatch</h3><ul><li>Nicolas</li><li>Sandra en renfort après sa pause</li></ul></div>
-    </div>
-  </div>
+<table>
 
-  <div class="time-block">
-    <h2>15h00 - 16h00</h2>
-    <div class="stands">
-      <div class="stand hotdog"><h3>Hot-dogs / hamburgers</h3><ul><li>Alain</li><li>Bilal</li><li>Juliana jusqu’à 16h00</li></ul></div>
-      <div class="stand bar"><h3>Bar</h3><ul><li>Jennifer</li><li>Sandra</li></ul></div>
-      <div class="stand caisse"><h3>Caisse</h3><ul><li>Alex</li><li>Daniela</li></ul></div>
-      <div class="stand popcorn"><h3>Popcorn / Barbe à papa</h3><ul><li>Hoi Yu</li></ul></div>
-      <div class="stand volant"><h3>Volant / dispatch</h3><ul><li>Nicolas</li><li>Laura en renfort</li></ul></div>
-    </div>
-  </div>
+<thead>
+<tr>
+<th>Poste</th>
+<th>10-11</th>
+<th>11-12</th>
+<th>12-13</th>
+<th>13-14</th>
+<th>14-15</th>
+<th>15-16</th>
+<th>16-17</th>
+</tr>
+</thead>
 
-  <div class="time-block">
-    <h2>16h00 - 17h00</h2>
-    <div class="stands">
-      <div class="stand hotdog"><h3>Hot-dogs / hamburgers</h3><ul><li>Alain</li><li>Bilal</li><li>Christophe en renfort possible dès 16h30</li></ul></div>
-      <div class="stand bar"><h3>Bar</h3><ul><li>Jennifer</li><li>Daniela</li></ul></div>
-      <div class="stand caisse"><h3>Caisse</h3><ul><li>Alex</li><li>Laura</li></ul></div>
-      <div class="stand popcorn"><h3>Popcorn / Barbe à papa</h3><ul><li>Hoi Yu</li></ul></div>
-      <div class="stand volant"><h3>Volant / dispatch</h3><ul><li>Nicolas</li><li>Sandra</li></ul></div>
-    </div>
-  </div>
+<tbody>
 
-  <div class="time-block rangement">
-    <h2>Après 17h00 – Rangement</h2>
-    <ul>
-      <li>Nicolas – coordination rangement</li>
-      <li>Alex</li>
-      <li>Alain</li>
-      <li>Jennifer</li>
-      <li>Laura</li>
-      <li>Sandra</li>
-      <li>Hoi Yu</li>
-      <li>Christophe si disponible</li>
-      <li>Daniela jusqu’à 17h00 uniquement</li>
-    </ul>
-  </div>
+<tr>
+<td class="poste">🌭 Hot-dogs / Hamburgers</td>
+<td>Alain<br>Bilal<br>Juliana</td>
+<td>Alain<br>Bilal<br>Juliana</td>
+<td>Alain<br>Bilal<br>Juliana</td>
+<td>Alain<br>Bilal<br>Juliana</td>
+<td>Alain<br>Bilal<br>Juliana</td>
+<td>Alain<br>Bilal<br>Juliana</td>
+<td>Alain<br>Bilal<br>Christophe</td>
+</tr>
 
-  <div class="note">
-    <strong>Points d’attention :</strong><br>
-    Nicolas reste volontairement volant toute la journée.  
-    Sandra doit pouvoir faire une pause pendant le spectacle des 2e maternelles.  
-    Domi est présent uniquement de 11h30 à 14h00.  
-    Kiki aide uniquement avant l’ouverture.  
-    Christophe peut renforcer avant 10h00 ou après 16h30.
-  </div>
-</section>
+<tr>
+<td class="poste">🍺 Bar</td>
+<td>Sandra<br>Daniela<br>Laura</td>
+<td>Sandra<br>Daniela<br>Laura</td>
+<td>Sandra<br>Daniela<br>Laura</td>
+<td>Sandra<br>Daniela<br>Laura</td>
+<td>Sandra<br>Daniela<br>Laura</td>
+<td>Sandra<br>Daniela<br>Laura</td>
+<td>Sandra<br>Daniela<br>Laura</td>
+</tr>
+
+<tr>
+<td class="poste">🎟️ Caisse</td>
+<td>Jennifer<br>Alex</td>
+<td>Jennifer<br>Alex<br>Domi</td>
+<td>Jennifer<br>Alex<br>Domi</td>
+<td>Jennifer<br>Alex<br>Domi</td>
+<td>Jennifer<br>Alex</td>
+<td>Jennifer<br>Alex</td>
+<td>Jennifer<br>Alex</td>
+</tr>
+
+<tr>
+<td class="poste">🍿 Popcorn</td>
+<td>Hoi Yu</td>
+<td>Hoi Yu</td>
+<td>Hoi Yu<br>Koon Yin</td>
+<td>Hoi Yu<br>Koon Yin</td>
+<td>Hoi Yu</td>
+<td>Hoi Yu</td>
+<td>Hoi Yu</td>
+</tr>
+
+<tr>
+<td class="poste">🚨 Volant</td>
+<td>Nicolas</td>
+<td>Nicolas</td>
+<td>Nicolas</td>
+<td>Nicolas</td>
+<td>Nicolas</td>
+<td>Nicolas</td>
+<td>Nicolas</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<br><br>
+
+<h1>Mon Planning</h1>
+
+<div class="search">
+
+<input
+type="text"
+placeholder="Rechercher un prénom ou un poste..."
+onkeyup="searchPlanning(this.value)"
+>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+const data = {
+
+"jennifer":[
+"10-11 : Caisse",
+"11-12 : Caisse",
+"12-13 : Caisse",
+"13-14 : Caisse",
+"14-15 : Caisse",
+"15-16 : Caisse",
+"16-17 : Caisse"
+],
+
+"alex":[
+"10-11 : Caisse",
+"11-12 : Caisse",
+"12-13 : Caisse",
+"13-14 : Caisse",
+"14-15 : Caisse",
+"15-16 : Caisse",
+"16-17 : Caisse"
+],
+
+"domi":[
+"11h30 - 14h00 : Caisse"
+],
+
+"alain":[
+"10-17 : Hot-dogs / Hamburgers"
+],
+
+"bilal":[
+"10-17 : Hot-dogs / Hamburgers"
+],
+
+"juliana":[
+"10-16 : Hot-dogs / Hamburgers"
+],
+
+"sandra":[
+"10-17 : Bar"
+],
+
+"daniela":[
+"10-17 : Bar"
+],
+
+"laura":[
+"10-17 : Bar"
+],
+
+"hoi yu":[
+"10-17 : Popcorn / Barbe à papa"
+],
+
+"nicolas":[
+"10-17 : Volant / Dispatch"
+],
+
+"bar":[
+"10-17 : Sandra • Daniela • Laura"
+],
+
+"caisse":[
+"10-11 Jennifer • Alex",
+"11-14 Jennifer • Alex • Domi",
+"14-17 Jennifer • Alex"
+],
+
+"hotdogs":[
+"10-16 Alain • Bilal • Juliana",
+"16-17 Alain • Bilal • Christophe"
+],
+
+"popcorn":[
+"Hoi Yu",
+"Koon Yin en renfort"
+]
+
+};
+
+function searchPlanning(value){
+
+value=value.toLowerCase().trim();
+
+let result=document.getElementById("result");
+
+if(value===""){
+result.style.display="none";
+return;
+}
+
+for(let key in data){
+
+if(key.includes(value)){
+
+result.style.display="block";
+
+result.innerHTML=
+"<h2>"+key.toUpperCase()+"</h2><br>" +
+data[key].map(x=>"<div class='badge'>"+x+"</div>").join("<br>");
+
+return;
+}
+}
+
+result.style.display="block";
+result.innerHTML="Aucun résultat";
+}
+
+</script>
+
+</body>
+</html>
