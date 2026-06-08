@@ -486,6 +486,19 @@
             animation: pulse 2s ease-in-out infinite;
         }
 
+        .missing-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: white;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            margin-left: 8px;
+        }
+
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
@@ -690,6 +703,12 @@
                         </div>
                     </div>
                     <div class="time-slot">
+                        <div class="time-badge">17:00+</div>
+                        <div class="workers">
+                            <span class="person-tag tag-ven name" onclick="openPersonModal(this.innerText)">Laura</span>
+                        </div>
+                    </div>
+                    <div class="time-slot">
                         <div class="time-badge">17:00–18:30</div>
                         <div class="workers">
                             <span class="person-tag tag-ven name" onclick="openPersonModal(this.innerText)">Alex</span>
@@ -714,7 +733,6 @@
                         <div class="time-badge">18:30+</div>
                         <div class="workers">
                             <span class="person-tag tag-ven name" onclick="openPersonModal(this.innerText)">Hoi Yu</span>
-                            <span class="person-tag tag-ven name" onclick="openPersonModal(this.innerText)">Laura</span>
                         </div>
                     </div>
                 </div>
@@ -791,11 +809,10 @@
                     <h3>Grill & Burgers</h3>
                 </div>
                 <div class="timeline">
-                    <div class="time-slot"><div class="time-badge">Avant 10:00</div><div class="workers"><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Alain</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Bilal</span></div></div>
-                    <div class="time-slot"><div class="time-badge">10:00–11:00</div><div class="workers"><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Juliana</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Bilal</span></div></div>
-                    <div class="time-slot"><div class="time-badge">11:00–12:00</div><div class="workers"><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Juliana</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Bilal</span></div></div>
-                    <div class="time-slot" style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 140, 140, 0.1));"><div class="time-badge">12:00–13:00</div><div class="workers"><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Alain</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Bilal</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Gil</span><span class="rush-indicator">🔥 RUSH</span></div></div>
-                    <div class="time-slot" style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 140, 140, 0.1));"><div class="time-badge">13:00–14:00</div><div class="workers"><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Alain</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Bilal</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Gil</span></div></div>
+                    <div class="time-slot"><div class="time-badge">10:00–11:00</div><div class="workers"><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Juliana</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Bilal</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Alain</span></div></div>
+                    <div class="time-slot"><div class="time-badge">11:00–12:00</div><div class="workers"><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Juliana</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Bilal</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Alain</span><span class="missing-indicator">−2</span></div></div>
+                    <div class="time-slot" style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 140, 140, 0.1));"><div class="time-badge">12:00–13:00</div><div class="workers"><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Alain</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Bilal</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Gil</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Juliana</span><span class="rush-indicator">🔥 RUSH</span><span class="missing-indicator">−1</span></div></div>
+                    <div class="time-slot" style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 140, 140, 0.1));"><div class="time-badge">13:00–14:00</div><div class="workers"><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Alain</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Bilal</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Gil</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Juliana</span><span class="missing-indicator">−1</span></div></div>
                     <div class="time-slot"><div class="time-badge">14:00–17:00</div><div class="workers"><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Juliana</span><span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Alain</span></div></div>
                 </div>
             </div>
@@ -807,12 +824,11 @@
                     <h3>Bar & Boissons</h3>
                 </div>
                 <div class="timeline">
-                    <div class="time-slot"><div class="time-badge">Avant 10:00</div><div class="workers"><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Daniela</span></div></div>
-                    <div class="time-slot"><div class="time-badge">10:00–11:00</div><div class="workers"><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Daniela</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Sandra</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Laura</span></div></div>
-                    <div class="time-slot"><div class="time-badge">11:00–12:00</div><div class="workers"><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Daniela</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Sandra</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Laura</span></div></div>
-                    <div class="time-slot" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 197, 253, 0.1));"><div class="time-badge">12:00–13:00</div><div class="workers"><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Sandra</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Daniela</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Alex</span><span class="rush-indicator">🔥 RUSH</span></div></div>
-                    <div class="time-slot" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 197, 253, 0.1));"><div class="time-badge">13:00–14:00</div><div class="workers"><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Sandra</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Daniela</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Alex</span></div></div>
-                    <div class="time-slot"><div class="time-badge">14:00–15:00</div><div class="workers"><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Daniela</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Laura</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Gil</span><span style="font-size: 11px; color: var(--text-sub); margin-left: 6px;"></span></div></div>
+                    <div class="time-slot"><div class="time-badge">10:00–11:00</div><div class="workers"><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Daniela</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Sandra</span></div></div>
+                    <div class="time-slot"><div class="time-badge">11:00–12:00</div><div class="workers"><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Daniela</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Sandra</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Laura</span><span class="missing-indicator">−2</span></div></div>
+                    <div class="time-slot" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 197, 253, 0.1));"><div class="time-badge">12:00–13:00</div><div class="workers"><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Sandra</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Daniela</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Jennifer</span><span class="rush-indicator">🔥 RUSH</span><span class="missing-indicator">−2</span></div></div>
+                    <div class="time-slot" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 197, 253, 0.1));"><div class="time-badge">13:00–14:00</div><div class="workers"><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Sandra</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Daniela</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Jennifer</span><span class="missing-indicator">−2</span></div></div>
+                    <div class="time-slot"><div class="time-badge">14:00–15:00</div><div class="workers"><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Daniela</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Laura</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Gil</span></div></div>
                     <div class="time-slot"><div class="time-badge">15:00–17:00</div><div class="workers"><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Daniela</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Laura</span><span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Gil</span></div></div>
                 </div>
             </div>
@@ -824,9 +840,8 @@
                     <h3>Caisse Principale</h3>
                 </div>
                 <div class="timeline">
-                    <div class="time-slot"><div class="time-badge">Avant 10:00</div><div class="workers"><span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Jennifer</span><span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Kiki</span></div></div>
                     <div class="time-slot"><div class="time-badge">10:00–12:00</div><div class="workers"><span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Jennifer</span><span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Alex</span></div></div>
-                    <div class="time-slot"><div class="time-badge">12:00–14:00</div><div class="workers"><span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Jennifer</span><span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Domi</span><span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Juliana</span></div></div>
+                    <div class="time-slot"><div class="time-badge">12:00–14:00</div><div class="workers"><span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Domi</span><span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Alex</span></div></div>
                     <div class="time-slot"><div class="time-badge">14:00–17:00</div><div class="workers"><span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Jennifer</span><span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Alex</span></div></div>
                 </div>
             </div>
