@@ -112,24 +112,24 @@
         /* ====== NAVIGATION FLOTTANTE ====== */
         nav {
             position: fixed;
-            bottom: 30px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 12px;
+            gap: 8px;
             background: var(--bg-glass);
             backdrop-filter: blur(20px);
             border: 1px solid var(--border-glass);
-            padding: 12px 20px;
+            padding: 8px 12px;
             border-radius: 999px;
             z-index: 100;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
         }
 
         nav a {
-            padding: 8px 16px;
+            padding: 6px 11px;
             border-radius: 999px;
-            font-size: 13px;
+            font-size: 11px;
             font-weight: 600;
             color: var(--text-main);
             text-decoration: none;
@@ -644,7 +644,7 @@
 <div class="container">
 
     <header>
-        <div class="badge">🎉 PLANNING OFFICIEL 2026</div>
+        <div class="badge">Planning</div>
         <h1>Fête des Maternelles</h1>
         <p class="subtitle">12-13 juin • Tout le monde coordonné • Zéro stress</p>
     </header>
@@ -661,7 +661,6 @@
             <p class="waiting-text">Disponibilités non confirmées</p>
             <div class="waiting-names">
                 <div class="waiting-tag cursor-help" onclick="openPersonModal('Valéry')">Valéry</div>
-                <div class="waiting-tag cursor-help" onclick="openPersonModal('Koon Yin')">Koon Yin</div>
             </div>
         </div>
     </section>
@@ -792,14 +791,13 @@
                         <p style="font-weight: 700; color: var(--text-sub); margin-bottom: 12px;">🍿 Stand Popcorn (10:00–17:00)</p>
                         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                             <span class="person-tag tag-log name" onclick="openPersonModal(this.innerText)">Hoi Yu</span>
-                            <span class="person-tag tag-log name" onclick="openPersonModal(this.innerText)">Koon Yin</span>
+                            <span class="person-tag tag-log name" style="border-style: dashed !important; border-width: 2px; opacity: 0.75;" onclick="openPersonModal(this.innerText)">Koon Yin</span>
                         </div>
                     </div>
                     <div>
                         <p style="font-weight: 700; color: var(--text-sub); margin-bottom: 12px;">🚨 Coordination Mobile (08:00–23:00)</p>
                         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                             <span class="person-tag tag-log name" onclick="openPersonModal(this.innerText)">Nicolas</span>
-                            <span class="person-tag tag-waiting name" onclick="openPersonModal(this.innerText)">Valéry</span>
                         </div>
                     </div>
                 </div>
