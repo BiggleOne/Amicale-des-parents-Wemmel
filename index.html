@@ -3,343 +3,427 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fête des Maternelles - Planning</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Fête des Maternelles 2026 — Hub de Planification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
         :root {
-            --bg: #f8fafc;
-            --primary: #4f46e5;
-            --primary-light: #e0e7ff;
-            --accent: #f59e0b;
-            --text-dark: #1e293b;
-            --text-muted: #64748b;
-            --card-bg: #ffffff;
+            --bg-fluid: #f3f7fa;
+            --glass-card: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --neon-primary: #4f46e5;
+            --neon-accent: #ff6b6b;
+            --neon-mint: #10b981;
+            --text-main: #0f172a;
+            --text-sub: #64748b;
+            --shadow-smooth: 0 20px 40px -15px rgba(15, 23, 42, 0.05);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text-dark);
-            padding: 20px;
-            line-height: 1.5;
+            background: radial-gradient(circle at top right, #eef2ff, #f3f7fa 60%);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 40px 20px;
         }
 
-        .container {
-            max-width: 1200px;
+        .app-container {
+            max-width: 1400px;
             margin: 0 auto;
         }
 
-        /* HEADER */
-        .hero {
+        /* HEADER TENDANCE 2026 */
+        header {
             text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #6366f1, #4f46e5);
-            color: white;
-            border-radius: 24px;
-            box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.2);
-            margin-bottom: 30px;
+            margin-bottom: 50px;
+            position: relative;
         }
 
-        .hero h1 {
-            font-size: clamp(1.8rem, 5vw, 3rem);
+        .year-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #ff6b6b, #4f46e5);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+        }
+
+        header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            background: linear-gradient(180deg, #0f172a 30%, #334155);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--text-sub);
+            font-size: 1.1rem;
+            margin-top: 8px;
+            font-weight: 400;
+        }
+
+        /* BARRE DE RECHERCHE MINIMALISTE IMMERSIVE */
+        .search-wrapper {
+            max-width: 650px;
+            margin: 0 auto 60px auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 20px 28px;
+            padding-left: 60px;
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            background: var(--glass-card);
+            backdrop-filter: blur(20px);
+            font-size: 16px;
+            color: var(--text-main);
+            box-shadow: var(--shadow-smooth), inset 0 2px 4px rgba(255,255,255,0.8);
+            outline: none;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .search-wrapper i {
+            position: absolute;
+            left: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-sub);
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: var(--neon-primary);
+            box-shadow: 0 30px 60px -15px rgba(79, 70, 229, 0.15);
+            transform: scale(1.01);
+        }
+
+        .search-input:focus + i {
+            color: var(--neon-primary);
+        }
+
+        /* BENTO GRID LAYOUT */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 30px;
+        }
+
+        .bento-card {
+            background: var(--glass-card);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 35px;
+            box-shadow: var(--shadow-smooth);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Tailles asymétriques Bento */
+        .size-full { grid-column: span 12; }
+        .size-large { grid-column: span 7; }
+        .size-medium { grid-column: span 5; }
+        
+        @media (max-width: 1024px) {
+            .size-large, .size-medium { grid-column: span 12; }
+        }
+
+        .bento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px -20px rgba(15, 23, 42, 0.08);
+        }
+
+        .bento-card h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem;
             font-weight: 700;
             letter-spacing: -0.5px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .hero p {
-            margin-top: 10px;
-            opacity: 0.9;
+        .bento-card h2 i {
+            color: var(--neon-primary);
+            background: #fff;
+            padding: 10px;
+            border-radius: 14px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.03);
             font-size: 1.1rem;
         }
 
-        /* BARRE DE RECHERCHE */
-        .search-box {
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto 40px auto;
+        /* SLOTS CHRONO LOOK FUTURISTE */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        .search-box input {
-            width: 100%;
-            padding: 16px 24px;
-            border-radius: 16px;
-            border: 2px solid #e2e8f0;
-            font-size: 16px;
-            background: var(--card-bg);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            transition: all 0.2s ease;
-            outline: none;
-        }
-
-        .search-box input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.1);
-        }
-
-        /* ZONE DE RÉSULTAT */
-        #result-container {
-            display: none;
-            max-width: 600px;
-            margin: -25px auto 35px auto;
-            background: #ffffff;
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-            border-left: 5px solid var(--accent);
-        }
-
-        #result-title {
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-        }
-
-        .badge {
-            display: inline-block;
-            background: var(--primary-light);
-            color: var(--primary);
-            padding: 6px 14px;
-            border-radius: 99px;
-            margin: 4px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        /* GRILLE DE PLANNING */
-        .grid {
+        .time-slot {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 24px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
-            border: 1px solid #f1f5f9;
-            transition: transform 0.2s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-2px);
-        }
-
-        .card h2 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            display: flex;
+            grid-template-columns: 130px 1fr;
             align-items: center;
-            gap: 10px;
-            color: var(--text-dark);
-            border-bottom: 2px solid #f1f5f9;
-            padding-bottom: 12px;
+            padding: 14px 20px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
         }
 
-        /* TIMELINE SLOTS */
-        .slot {
+        .time-slot:hover {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: #e2e8f0;
+        }
+
+        .time-tag {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-sub);
+            letter-spacing: -0.2px;
+        }
+
+        .special-tag {
+            background: linear-gradient(135deg, #fff7ed, #ffedd5);
+            color: #c2410c;
+            border: 1px solid #fed7aa;
+        }
+
+        .workers {
             display: flex;
-            align-items: flex-start;
-            padding: 12px 0;
-            border-bottom: 1px dashed #e2e8f0;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
-        .slot:last-child {
-            border-none: none;
-            border-bottom: none;
-        }
-
-        .slot.special {
-            background-color: #f8fafc;
-            margin: 4px 0;
-            padding: 10px;
-            border-radius: 8px;
-            border: none;
-        }
-
-        .time {
-            min-width: 100px;
-            font-weight: 700;
-            color: var(--primary);
+        .person-tag {
+            background: #ffffff;
+            padding: 6px 14px;
+            border-radius: 12px;
             font-size: 14px;
-            background: var(--primary-light);
-            padding: 2px 8px;
-            border-radius: 6px;
+            font-weight: 500;
+            color: var(--text-main);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            border: 1px solid #f1f5f9;
+            transition: all 0.3s ease;
+        }
+
+        .info-sub {
+            font-size: 11px;
+            color: var(--text-sub);
+            display: block;
+            margin-top: 2px;
+            font-weight: 400;
+        }
+
+        /* ANIMATIONS ET HIGHLIGHTS VIA RECHERCHE */
+        .highlight-card {
+            border-color: var(--neon-primary) !important;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15), var(--shadow-smooth) !important;
+        }
+
+        .active-glow {
+            background: var(--neon-primary) !important;
+            color: white !important;
+            font-weight: 600;
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);
+            animation: pulseGlow 1.5s infinite ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.85; }
+        }
+
+        .blur-card {
+            opacity: 0.25;
+            filter: blur(1px);
+        }
+
+        /* DESIGN SPÉCIFIQUE VENDREDI */
+        .friday-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            width: 100%;
+        }
+
+        .friday-box {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 16px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
             text-align: center;
         }
 
-        .slot.special .time {
-            background: #fef3c7;
-            color: #d97706;
-        }
-
-        .people {
-            margin-left: 15px;
+        .friday-box strong {
+            display: block;
             font-size: 15px;
-            color: var(--text-dark);
-            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 4px;
         }
 
-        .note {
+        .friday-box span {
             font-size: 12px;
-            color: var(--text-muted);
-            font-style: italic;
-            margin-top: 2px;
+            color: var(--neon-primary);
+            font-weight: 600;
+            background: var(--primary-light);
+            padding: 2px 8px;
+            border-radius: 6px;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
+<div class="app-container">
     
-    <div class="hero">
-        <h1>FÊTE DES MATERNELLES</h1>
-        <p>Planning Général des Équipes • Samedi 13 Juin</p>
+    <header>
+        <div class="year-badge">LIVE HUB • EDITION 2026</div>
+        <h1>Fête des Maternelles</h1>
+        <p>Ajustement dynamique des ressources en temps réel</p>
+    </header>
+
+    <div class="search-wrapper">
+        <input type="text" id="globalSearch" class="search-input" placeholder="Tapez un prénom ou un poste pour illuminer le hub..." oninput="dynamicSearch(this.value)">
+        <i class="fa-solid fa-magnifying-glass"></i>
     </div>
 
-    <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Rechercher un prénom ou un pôle (ex: Caisse, Bilal, Alain)..." onkeyup="filterDynamic(this.value)">
-    </div>
+    <div class="bento-grid">
 
-    <div id="result-container">
-        <div id="result-title">Résultats de recherche</div>
-        <div id="result-content"></div>
-    </div>
-
-    <div class="grid">
-
-        <div class="card">
-            <h2>🌭 HOT-DOGS & HAMBURGERS</h2>
-            <div class="slot special"><div class="time">Avant 10:00</div><div class="people">Alain • Bilal</div></div>
-            <div class="slot"><div class="time">10:00 - 11:00</div><div class="people">Juliana • Bilal</div></div>
-            <div class="slot"><div class="time">11:00 - 12:00</div><div class="people">Juliana • Bilal</div></div>
-            <div class="slot"><div class="time">12:00 - 13:00</div><div class="people">Alain • Bilal <div class="note">Rush du midi</div></div></div>
-            <div class="slot"><div class="time">13:00 - 14:00</div><div class="people">Alain • Bilal</div></div>
-            <div class="slot"><div class="time">14:00 - 15:00</div><div class="people">Juliana • Alain</div></div>
-            <div class="slot"><div class="time">15:00 - 16:00</div><div class="people">Juliana • Alain</div></div>
-            <div class="slot"><div class="time">16:00 - 17:00</div><div class="people">Juliana • Alain</div></div>
-            <div class="slot special"><div class="time">Après 17:00</div><div class="people">Bilal • Alain <div class="note">Rangement stand</div></div></div>
+        <div class="bento-card size-full" data-tags="préparation ven prepa gil alain christophe nicolas alex jennifer sandra hynd hoi yu kiki bilal valéry laura">
+            <h2 style="color: var(--neon-accent);"><i class="fa-solid fa-tools" style="color: var(--neon-accent);"></i> Configuration Initiale (Vendredi 12/06)</h2>
+            <div class="friday-layout">
+                <div class="friday-box"><strong class="name">Alain, Christophe, Gil, Nicolas</strong><span>16:30</span></div>
+                <div class="friday-box"><strong class="name">Alex</strong><span>17:00</span></div>
+                <div class="friday-box"><strong class="name">Jennifer</strong><span>17:15</span></div>
+                <div class="friday-box"><strong class="name">Sandra, Hynd</strong><span>17:30</span></div>
+                <div class="friday-box"><strong class="name">Hoi Yu</strong><span>17:40 - 18:00</span></div>
+                <div class="friday-box"><strong class="name">Kiki, Bilal, Valéry</strong><span>18:00</span></div>
+                <div class="friday-box"><strong class="name">Laura</strong><span>19:00</span></div>
+            </div>
         </div>
 
-        <div class="card">
-            <h2>🍺 BAR & BOISSONS</h2>
-            <div class="slot special"><div class="time">Avant 10:00</div><div class="people">Jennifer</div></div>
-            <div class="slot"><div class="time">10:00 - 11:00</div><div class="people">Daniela • Sandra</div></div>
-            <div class="slot"><div class="time">11:00 - 12:00</div><div class="people">Daniela • Sandra</div></div>
-            <div class="slot"><div class="time">12:00 - 13:00</div><div class="people">Jennifer • Sandra</div></div>
-            <div class="slot"><div class="time">13:00 - 14:00</div><div class="people">Jennifer • Sandra</div></div>
-            <div class="slot"><div class="time">14:00 - 15:00</div><div class="people">Daniela • Jennifer <div class="note">Pause Spectacle Maternelle Sandra</div></div></div>
-            <div class="slot"><div class="time">15:00 - 16:00</div><div class="people">Daniela • Jennifer</div></div>
-            <div class="slot"><div class="time">16:00 - 17:00</div><div class="people">Daniela • Jennifer</div></div>
-            <div class="slot special"><div class="time">Après 17:00</div><div class="people">Jennifer • Sandra <div class="note">Nettoyage bar</div></div></div>
+        <div class="bento-card size-large" data-tags="caisse jetons jennifer laura kiki alex domi juliana">
+            <h2><i class="fa-solid fa-ticket"></i> Caisse Principale & Jetons</h2>
+            <div class="timeline">
+                <div class="time-slot"><div class="time-tag">Avant 10:00</div><div class="workers"><span class="person-tag name">Jennifer</span><span class="person-tag name">Laura</span><span class="person-tag name">Kiki</span></div></div>
+                <div class="time-slot"><div class="time-tag">10:00 - 11:00</div><div class="workers"><span class="person-tag name">Jennifer</span><span class="person-tag name">Alex</span><span class="person-tag name">Laura</span></div></div>
+                <div class="time-slot"><div class="time-tag">11:00 - 12:00</div><div class="workers"><span class="person-tag name">Jennifer</span><span class="person-tag name">Alex</span><span class="person-tag name">Laura</span></div></div>
+                <div class="time-slot" style="background: rgba(79, 70, 229, 0.03);"><div class="time-tag" style="color: var(--neon-primary)">12:00 - 13:00</div><div class="workers"><span class="person-tag name">Jennifer</span><span class="person-tag name">Domi</span><span class="person-tag name">Juliana</span><span class="info-sub">⚠️ Rush de la mi-journée</span></div></div>
+                <div class="time-slot" style="background: rgba(79, 70, 229, 0.03);"><div class="time-tag" style="color: var(--neon-primary)">13:00 - 14:00</div><div class="workers"><span class="person-tag name">Jennifer</span><span class="person-tag name">Domi</span><span class="person-tag name">Juliana</span></div></div>
+                <div class="time-slot"><div class="time-tag">14:00 - 15:00</div><div class="workers"><span class="person-tag name">Jennifer</span><span class="person-tag name">Alex</span><span class="person-tag name">Laura</span></div></div>
+                <div class="time-slot"><div class="time-tag">15:00 - 16:00</div><div class="workers"><span class="person-tag name">Jennifer</span><span class="person-tag name">Alex</span><span class="person-tag name">Laura</span></div></div>
+                <div class="time-slot"><div class="time-tag">16:00 - 17:00</div><div class="workers"><span class="person-tag name">Jennifer</span><span class="person-tag name">Alex</span><span class="person-tag name">Laura</span></div></div>
+                <div class="time-slot"><div class="time-tag">Après 17:00</div><div class="workers"><span class="person-tag name">Jennifer</span><span class="person-tag name">Alex</span><span class="person-tag name">Laura</span><span class="info-sub">Comptage & Clôture</span></div></div>
+            </div>
         </div>
 
-        <div class="card">
-            <h2>🎟️ CAISSE & JETONS</h2>
-            <div class="slot special"><div class="time">Avant 10:00</div><div class="people">Laura • Kiki</div></div>
-            <div class="slot"><div class="time">10:00 - 11:00</div><div class="people">Alex • Laura</div></div>
-            <div class="slot"><div class="time">11:00 - 12:00</div><div class="people">Alex • Laura</div></div>
-            <div class="slot"><div class="time">12:00 - 13:00</div><div class="people">Domi • Juliana <div class="note">Renfort Caisse</div></div></div>
-            <div class="slot"><div class="time">13:00 - 14:00</div><div class="people">Domi • Juliana</div></div>
-            <div class="slot"><div class="time">14:00 - 15:00</div><div class="people">Alex • Laura</div></div>
-            <div class="slot"><div class="time">15:00 - 16:00</div><div class="people">Alex • Laura</div></div>
-            <div class="slot"><div class="time">16:00 - 17:00</div><div class="people">Alex • Laura</div></div>
-            <div class="slot special"><div class="time">Après 17:00</div><div class="people">Alex • Laura <div class="note">Comptage financier</div></div></div>
+        <div class="bento-card size-medium" data-tags="hot-dogs hamburgers alain bilal juliana">
+            <h2><i class="fa-solid fa-burger"></i> Grill & Saveurs</h2>
+            <div class="timeline">
+                <div class="time-slot"><div class="time-tag">Avant 10:00</div><div class="workers"><span class="person-tag name">Alain</span><span class="person-tag name">Bilal</span></div></div>
+                <div class="time-slot"><div class="time-tag">10:00 - 11:00</div><div class="workers"><span class="person-tag name">Juliana</span><span class="person-tag name">Bilal</span></div></div>
+                <div class="time-slot"><div class="time-tag">11:00 - 12:00</div><div class="workers"><span class="person-tag name">Juliana</span><span class="person-tag name">Bilal</span></div></div>
+                <div class="time-slot"><div class="time-tag">12:00 - 13:00</div><div class="workers"><span class="person-tag name">Alain</span><span class="person-tag name">Bilal</span></div></div>
+                <div class="time-slot"><div class="time-tag">13:00 - 14:00</div><div class="workers"><span class="person-tag name">Alain</span><span class="person-tag name">Bilal</span></div></div>
+                <div class="time-slot"><div class="time-tag">14:00 - 15:00</div><div class="workers"><span class="person-tag name">Juliana</span><span class="person-tag name">Alain</span></div></div>
+                <div class="time-slot"><div class="time-tag">15:00 - 16:00</div><div class="workers"><span class="person-tag name">Juliana</span><span class="person-tag name">Alain</span></div></div>
+                <div class="time-slot"><div class="time-tag">16:00 - 17:00</div><div class="workers"><span class="person-tag name">Juliana</span><span class="person-tag name">Alain</span></div></div>
+                <div class="time-slot"><div class="time-tag">Après 17:00</div><div class="workers"><span class="person-tag name">Bilal</span><span class="person-tag name">Alain</span></div></div>
+            </div>
         </div>
 
-        <div class="card">
-            <h2>🍿 POPCORN & BARBAPAPA</h2>
-            <div class="slot special"><div class="time">Avant 10:00</div><div class="people">Hoi Yu <div class="note">Chauffe machines</div></div></div>
-            <div class="slot"><div class="time">10:00 - 17:00</div><div class="people">Hoi Yu</div></div>
-            <div class="slot special"><div class="time">Soutien</div><div class="people">Koon Yin <div class="note">Volant sur la journée</div></div></div>
-            <div class="slot special"><div class="time">Après 17:00</div><div class="people">Hoi Yu</div></div>
+        <div class="bento-card size-medium" data-tags="bar boissons daniela sandra">
+            <h2><i class="fa-solid fa-glass-water"></i> Bar & Rafraîchissements</h2>
+            <div class="timeline">
+                <div class="time-slot"><div class="time-tag">10:00 - 11:00</div><div class="workers"><span class="person-tag name">Daniela</span><span class="person-tag name">Sandra</span></div></div>
+                <div class="time-slot"><div class="time-tag">11:00 - 12:00</div><div class="workers"><span class="person-tag name">Daniela</span><span class="person-tag name">Sandra</span></div></div>
+                <div class="time-slot"><div class="time-tag">12:00 - 13:00</div><div class="workers"><span class="person-tag name">Sandra</span></div></div>
+                <div class="time-slot"><div class="time-tag">13:00 - 14:00</div><div class="workers"><span class="person-tag name">Sandra</span></div></div>
+                <div class="time-slot"><div class="time-tag">14:00 - 15:00</div><div class="workers"><span class="person-tag name">Daniela</span><span class="info-sub">⚠️ Sandra en pause spectacle</span></div></div>
+                <div class="time-slot"><div class="time-tag">15:00 - 16:00</div><div class="workers"><span class="person-tag name">Daniela</span></div></div>
+                <div class="time-slot"><div class="time-tag">16:00 - 17:00</div><div class="workers"><span class="person-tag name">Daniela</span></div></div>
+                <div class="time-slot"><div class="time-tag">Après 17:00</div><div class="workers"><span class="person-tag name">Sandra</span></div></div>
+            </div>
         </div>
 
-        <div class="card">
-            <h2>🚨 VOLANT & COORDINATION</h2>
-            <div class="slot special"><div class="time">Avant 10:00</div><div class="people">Nicolas</div></div>
-            <div class="slot"><div class="time">10:00 - 17:00</div><div class="people">Nicolas <div class="note">Gestion des incidents / Logistique</div></div></div>
-            <div class="slot special"><div class="time">Après 17:00</div><div class="people">Nicolas • Christophe <div class="note">Gros bras rangement</div></div></div>
+        <div class="bento-card size-large" data-tags="popcorn barbapapa hoi yu koon yin volant coordination nicolas christophe">
+            <h2><i class="fa-solid fa-circle-nodes"></i> Logistique, Sucré & Flux Volants</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div>
+                    <h3 style="font-size: 14px; color: var(--text-sub); margin-bottom: 10px; font-weight: 600; text-transform: uppercase;">🍿 Stand Popcorn</h3>
+                    <div class="timeline">
+                        <div class="time-slot"><div class="time-tag">08h - 10h</div><div class="workers"><span class="person-tag name">Hoi Yu</span></div></div>
+                        <div class="time-slot"><div class="time-tag">10h - 17h</div><div class="workers"><span class="person-tag name">Hoi Yu</span></div></div>
+                        <div class="time-slot"><div class="time-tag">Soutien</div><div class="workers"><span class="person-tag name">Koon Yin</span></div></div>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-size: 14px; color: var(--text-sub); margin-bottom: 10px; font-weight: 600; text-transform: uppercase;">🚨 Supervision Volante</h3>
+                    <div class="timeline">
+                        <div class="time-slot"><div class="time-tag">08h - 10h</div><div class="workers"><span class="person-tag name">Nicolas</span></div></div>
+                        <div class="time-slot"><div class="time-tag">10h - 17h</div><div class="workers"><span class="person-tag name">Nicolas</span></div></div>
+                        <div class="time-slot"><div class="time-tag">Après 17h</div><div class="workers"><span class="person-tag name">Nicolas</span><span class="person-tag name">Christophe</span></div></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
 </div>
 
 <script>
-// Base de données propre croisant créneaux, personnes et postes
-const scheduleData = [
-    { name: "juliana", post: "hot-dogs", time: "10:00 - 12:00" },
-    { name: "juliana", post: "caisse", time: "12:00 - 14:00" },
-    { name: "juliana", post: "hot-dogs", time: "14:00 - 17:00" },
-    { name: "daniela", post: "bar", time: "10:00 - 12:00" },
-    { name: "daniela", post: "bar", time: "14:00 - 17:00" },
-    { name: "alex", post: "caisse", time: "10:00 - 12:00" },
-    { name: "alex", post: "caisse", time: "14:00 - 17:00" },
-    { name: "alex", post: "rangement", time: "Après 17:00" },
-    { name: "alain", post: "hot-dogs", time: "Avant 10:00" },
-    { name: "alain", post: "hot-dogs", time: "12:00 - 14:00" },
-    { name: "alain", post: "hot-dogs", time: "14:00 - 17:00" },
-    { name: "alain", post: "rangement", time: "Après 17:00" },
-    { name: "christophe", post: "rangement", time: "Après 17:00 (Volant)" },
-    { name: "nicolas", post: "volant", time: "En continu (08h00 - 23h00)" },
-    { name: "jennifer", post: "bar", time: "Avant 10:00" },
-    { name: "jennifer", post: "caisse", time: "10:00 - 12:00" },
-    { name: "jennifer", post: "bar", time: "12:00 - 14:00" },
-    { name: "jennifer", post: "bar", time: "14:00 - 17:00" },
-    { name: "jennifer", post: "rangement", time: "Après 17:00" },
-    { name: "sandra", post: "bar", time: "10:00 - 14:00" },
-    { name: "sandra", post: "bar", time: "16:00 - 17:00 (⚠️ Pause spectacle entre-temps)" },
-    { name: "sandra", post: "rangement", time: "Après 17:00" },
-    { name: "hoi yu", post: "popcorn", time: "En continu (10h00 - 17h00 + Prépa/Rangement)" },
-    { name: "koon yin", post: "popcorn", time: "Soutien volant (Pas d'heure fixe)" },
-    { name: "domi", post: "caisse", time: "11:30 - 14:00 (Rush midi)" },
-    { name: "laura", post: "caisse", time: "Avant 10:00 (Dès 07h00)" },
-    { name: "laura", post: "caisse", time: "10:00 - 12:00" },
-    { name: "laura", post: "caisse", time: "14:00 - 17:00" },
-    { name: "laura", post: "rangement", time: "Après 17:00" },
-    { name: "kiki", post: "caisse", time: "Avant 10:00 (Mise en place uniquement)" },
-    { name: "bilal", post: "hot-dogs", time: "Avant 10:00" },
-    { name: "bilal", post: "hot-dogs", time: "10:00 - 14:00" },
-    { name: "bilal", post: "rangement", time: "Après 17:00" }
-];
+function dynamicSearch(val) {
+    const query = val.toLowerCase().trim();
+    const cards = document.querySelectorAll('.bento-card');
+    const allNames = document.querySelectorAll('.name, .person-tag');
 
-function filterDynamic(value) {
-    const query = value.toLowerCase().trim();
-    const container = document.getElementById('result-container');
-    const content = document.getElementById('result-content');
-    
+    // Reset complet si vide
     if (!query) {
-        container.style.display = 'none';
+        cards.forEach(c => c.classList.remove('blur-card', 'highlight-card'));
+        allNames.forEach(n => n.classList.remove('active-glow'));
         return;
     }
-    
-    // Filtrer tous les éléments qui matchent le prénom ou le nom du pôle
-    const matches = scheduleData.filter(item => 
-        item.name.includes(query) || item.post.includes(query)
-    );
-    
-    if (matches.length === 0) {
-        container.style.display = 'block';
-        content.innerHTML = '<span style="color: var(--text-muted)">Aucun créneau ou pôle trouvé pour cette recherche.</span>';
-        return;
-    }
-    
-    container.style.display = 'block';
-    content.innerHTML = matches.map(item => `
-        <span class="badge">
-            <strong>${item.name.toUpperCase()}</strong> — ${item.post.toUpperCase()} (${item.time})
-        </span>
-    `).join('');
+
+    cards.forEach(card => {
+        const tags = card.getAttribute('data-tags') || '';
+        if (tags.includes(query)) {
+            card.classList.remove('blur-card');
+            card.classList.add('highlight-card');
+        } else {
+            card.classList.remove('highlight-card');
+            card.classList.add('blur-card');
+        }
+    });
+
+    // Allumer précisément le prénom recherché partout sur l'écran
+    allNames.forEach(node => {
+        const text = node.textContent.toLowerCase();
+        if (text.includes(query) && query.length > 1) {
+            node.classList.add('active-glow');
+        } else {
+            node.classList.remove('active-glow');
+        }
+    });
 }
 </script>
 
