@@ -1,324 +1,346 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fête des Maternelles - Planning</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --primary: #4f46e5;
+            --primary-light: #e0e7ff;
+            --accent: #f59e0b;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --card-bg: #ffffff;
+        }
 
-<title>Fête des maternelles</title>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-<style>
+        body {
+            background-color: var(--bg);
+            color: var(--text-dark);
+            padding: 20px;
+            line-height: 1.5;
+        }
 
-:root{
-    --yellow:#FFD100;
-    --black:#111111;
-    --dark:#1A1A1A;
-    --light:#F5F5F5;
-}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
+        /* HEADER */
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: white;
+            border-radius: 24px;
+            box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.2);
+            margin-bottom: 30px;
+        }
 
-body{
-    background:var(--black);
-    color:white;
-    font-family:Arial,Helvetica,sans-serif;
-    padding:20px;
-}
+        .hero h1 {
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
 
-h1{
-    text-align:center;
-    color:var(--yellow);
-    margin-bottom:25px;
-    text-transform:uppercase;
-    letter-spacing:2px;
-}
+        .hero p {
+            margin-top: 10px;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
 
-.search{
-    max-width:800px;
-    margin:0 auto 30px auto;
-}
+        /* BARRE DE RECHERCHE */
+        .search-box {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+        }
 
-.search input{
-    width:100%;
-    padding:16px;
-    border:none;
-    border-radius:12px;
-    font-size:18px;
-    background:#222;
-    color:white;
-}
+        .search-box input {
+            width: 100%;
+            padding: 16px 24px;
+            border-radius: 16px;
+            border: 2px solid #e2e8f0;
+            font-size: 16px;
+            background: var(--card-bg);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+            outline: none;
+        }
 
-#result{
-    display:none;
-    margin-top:15px;
-    background:white;
-    color:black;
-    padding:20px;
-    border-radius:12px;
-}
+        .search-box input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.1);
+        }
 
-.grid{
-    overflow-x:auto;
-}
+        /* ZONE DE RÉSULTAT */
+        #result-container {
+            display: none;
+            max-width: 600px;
+            margin: -25px auto 35px auto;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--accent);
+        }
 
-table{
-    width:100%;
-    border-collapse:collapse;
-    min-width:1100px;
-}
+        #result-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
 
-th{
-    background:var(--yellow);
-    color:black;
-    padding:15px;
-    font-size:16px;
-}
+        .badge {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 99px;
+            margin: 4px;
+            font-size: 14px;
+            font-weight: 600;
+        }
 
-td{
-    border:1px solid #333;
-    padding:12px;
-    text-align:center;
-    vertical-align:middle;
-}
+        /* GRILLE DE PLANNING */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
 
-tr:nth-child(even){
-    background:#181818;
-}
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
+            border: 1px solid #f1f5f9;
+            transition: transform 0.2s ease;
+        }
 
-.poste{
-    font-weight:bold;
-    background:#222;
-    color:var(--yellow);
-    min-width:180px;
-}
+        .card:hover {
+            transform: translateY(-2px);
+        }
 
-.badge{
-    display:inline-block;
-    background:var(--yellow);
-    color:black;
-    padding:4px 8px;
-    margin:2px;
-    border-radius:20px;
-    font-size:13px;
-    font-weight:bold;
-}
+        .card h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-dark);
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 12px;
+        }
 
-</style>
+        /* TIMELINE SLOTS */
+        .slot {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .slot:last-child {
+            border-none: none;
+            border-bottom: none;
+        }
+
+        .slot.special {
+            background-color: #f8fafc;
+            margin: 4px 0;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+        }
+
+        .time {
+            min-width: 100px;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 14px;
+            background: var(--primary-light);
+            padding: 2px 8px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .slot.special .time {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .people {
+            margin-left: 15px;
+            font-size: 15px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .note {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 2px;
+        }
+    </style>
 </head>
 <body>
 
-<h1>Planning Général</h1>
+<div class="container">
+    
+    <div class="hero">
+        <h1>FÊTE DES MATERNELLES</h1>
+        <p>Planning Général des Équipes • Samedi 13 Juin</p>
+    </div>
 
-<div class="grid">
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Rechercher un prénom ou un pôle (ex: Caisse, Bilal, Alain)..." onkeyup="filterDynamic(this.value)">
+    </div>
 
-<table>
+    <div id="result-container">
+        <div id="result-title">Résultats de recherche</div>
+        <div id="result-content"></div>
+    </div>
 
-<thead>
-<tr>
-<th>Poste</th>
-<th>10-11</th>
-<th>11-12</th>
-<th>12-13</th>
-<th>13-14</th>
-<th>14-15</th>
-<th>15-16</th>
-<th>16-17</th>
-</tr>
-</thead>
+    <div class="grid">
 
-<tbody>
+        <div class="card">
+            <h2>🌭 HOT-DOGS & HAMBURGERS</h2>
+            <div class="slot special"><div class="time">Avant 10:00</div><div class="people">Alain • Bilal</div></div>
+            <div class="slot"><div class="time">10:00 - 11:00</div><div class="people">Juliana • Bilal</div></div>
+            <div class="slot"><div class="time">11:00 - 12:00</div><div class="people">Juliana • Bilal</div></div>
+            <div class="slot"><div class="time">12:00 - 13:00</div><div class="people">Alain • Bilal <div class="note">Rush du midi</div></div></div>
+            <div class="slot"><div class="time">13:00 - 14:00</div><div class="people">Alain • Bilal</div></div>
+            <div class="slot"><div class="time">14:00 - 15:00</div><div class="people">Juliana • Alain</div></div>
+            <div class="slot"><div class="time">15:00 - 16:00</div><div class="people">Juliana • Alain</div></div>
+            <div class="slot"><div class="time">16:00 - 17:00</div><div class="people">Juliana • Alain</div></div>
+            <div class="slot special"><div class="time">Après 17:00</div><div class="people">Bilal • Alain <div class="note">Rangement stand</div></div></div>
+        </div>
 
-<tr>
-<td class="poste">🌭 Hot-dogs / Hamburgers</td>
-<td>Alain<br>Bilal<br>Juliana</td>
-<td>Alain<br>Bilal<br>Juliana</td>
-<td>Alain<br>Bilal<br>Juliana</td>
-<td>Alain<br>Bilal<br>Juliana</td>
-<td>Alain<br>Bilal<br>Juliana</td>
-<td>Alain<br>Bilal<br>Juliana</td>
-<td>Alain<br>Bilal<br>Christophe</td>
-</tr>
+        <div class="card">
+            <h2>🍺 BAR & BOISSONS</h2>
+            <div class="slot special"><div class="time">Avant 10:00</div><div class="people">Jennifer</div></div>
+            <div class="slot"><div class="time">10:00 - 11:00</div><div class="people">Daniela • Sandra</div></div>
+            <div class="slot"><div class="time">11:00 - 12:00</div><div class="people">Daniela • Sandra</div></div>
+            <div class="slot"><div class="time">12:00 - 13:00</div><div class="people">Jennifer • Sandra</div></div>
+            <div class="slot"><div class="time">13:00 - 14:00</div><div class="people">Jennifer • Sandra</div></div>
+            <div class="slot"><div class="time">14:00 - 15:00</div><div class="people">Daniela • Jennifer <div class="note">Pause Spectacle Maternelle Sandra</div></div></div>
+            <div class="slot"><div class="time">15:00 - 16:00</div><div class="people">Daniela • Jennifer</div></div>
+            <div class="slot"><div class="time">16:00 - 17:00</div><div class="people">Daniela • Jennifer</div></div>
+            <div class="slot special"><div class="time">Après 17:00</div><div class="people">Jennifer • Sandra <div class="note">Nettoyage bar</div></div></div>
+        </div>
 
-<tr>
-<td class="poste">🍺 Bar</td>
-<td>Sandra<br>Daniela<br>Laura</td>
-<td>Sandra<br>Daniela<br>Laura</td>
-<td>Sandra<br>Daniela<br>Laura</td>
-<td>Sandra<br>Daniela<br>Laura</td>
-<td>Sandra<br>Daniela<br>Laura</td>
-<td>Sandra<br>Daniela<br>Laura</td>
-<td>Sandra<br>Daniela<br>Laura</td>
-</tr>
+        <div class="card">
+            <h2>🎟️ CAISSE & JETONS</h2>
+            <div class="slot special"><div class="time">Avant 10:00</div><div class="people">Laura • Kiki</div></div>
+            <div class="slot"><div class="time">10:00 - 11:00</div><div class="people">Alex • Laura</div></div>
+            <div class="slot"><div class="time">11:00 - 12:00</div><div class="people">Alex • Laura</div></div>
+            <div class="slot"><div class="time">12:00 - 13:00</div><div class="people">Domi • Juliana <div class="note">Renfort Caisse</div></div></div>
+            <div class="slot"><div class="time">13:00 - 14:00</div><div class="people">Domi • Juliana</div></div>
+            <div class="slot"><div class="time">14:00 - 15:00</div><div class="people">Alex • Laura</div></div>
+            <div class="slot"><div class="time">15:00 - 16:00</div><div class="people">Alex • Laura</div></div>
+            <div class="slot"><div class="time">16:00 - 17:00</div><div class="people">Alex • Laura</div></div>
+            <div class="slot special"><div class="time">Après 17:00</div><div class="people">Alex • Laura <div class="note">Comptage financier</div></div></div>
+        </div>
 
-<tr>
-<td class="poste">🎟️ Caisse</td>
-<td>Jennifer<br>Alex</td>
-<td>Jennifer<br>Alex<br>Domi</td>
-<td>Jennifer<br>Alex<br>Domi</td>
-<td>Jennifer<br>Alex<br>Domi</td>
-<td>Jennifer<br>Alex</td>
-<td>Jennifer<br>Alex</td>
-<td>Jennifer<br>Alex</td>
-</tr>
+        <div class="card">
+            <h2>🍿 POPCORN & BARBAPAPA</h2>
+            <div class="slot special"><div class="time">Avant 10:00</div><div class="people">Hoi Yu <div class="note">Chauffe machines</div></div></div>
+            <div class="slot"><div class="time">10:00 - 17:00</div><div class="people">Hoi Yu</div></div>
+            <div class="slot special"><div class="time">Soutien</div><div class="people">Koon Yin <div class="note">Volant sur la journée</div></div></div>
+            <div class="slot special"><div class="time">Après 17:00</div><div class="people">Hoi Yu</div></div>
+        </div>
 
-<tr>
-<td class="poste">🍿 Popcorn</td>
-<td>Hoi Yu</td>
-<td>Hoi Yu</td>
-<td>Hoi Yu<br>Koon Yin</td>
-<td>Hoi Yu<br>Koon Yin</td>
-<td>Hoi Yu</td>
-<td>Hoi Yu</td>
-<td>Hoi Yu</td>
-</tr>
+        <div class="card">
+            <h2>🚨 VOLANT & COORDINATION</h2>
+            <div class="slot special"><div class="time">Avant 10:00</div><div class="people">Nicolas</div></div>
+            <div class="slot"><div class="time">10:00 - 17:00</div><div class="people">Nicolas <div class="note">Gestion des incidents / Logistique</div></div></div>
+            <div class="slot special"><div class="time">Après 17:00</div><div class="people">Nicolas • Christophe <div class="note">Gros bras rangement</div></div></div>
+        </div>
 
-<tr>
-<td class="poste">🚨 Volant</td>
-<td>Nicolas</td>
-<td>Nicolas</td>
-<td>Nicolas</td>
-<td>Nicolas</td>
-<td>Nicolas</td>
-<td>Nicolas</td>
-<td>Nicolas</td>
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-<br><br>
-
-<h1>Mon Planning</h1>
-
-<div class="search">
-
-<input
-type="text"
-placeholder="Rechercher un prénom ou un poste..."
-onkeyup="searchPlanning(this.value)"
->
-
-<div id="result"></div>
-
+    </div>
 </div>
 
 <script>
+// Base de données propre croisant créneaux, personnes et postes
+const scheduleData = [
+    { name: "juliana", post: "hot-dogs", time: "10:00 - 12:00" },
+    { name: "juliana", post: "caisse", time: "12:00 - 14:00" },
+    { name: "juliana", post: "hot-dogs", time: "14:00 - 17:00" },
+    { name: "daniela", post: "bar", time: "10:00 - 12:00" },
+    { name: "daniela", post: "bar", time: "14:00 - 17:00" },
+    { name: "alex", post: "caisse", time: "10:00 - 12:00" },
+    { name: "alex", post: "caisse", time: "14:00 - 17:00" },
+    { name: "alex", post: "rangement", time: "Après 17:00" },
+    { name: "alain", post: "hot-dogs", time: "Avant 10:00" },
+    { name: "alain", post: "hot-dogs", time: "12:00 - 14:00" },
+    { name: "alain", post: "hot-dogs", time: "14:00 - 17:00" },
+    { name: "alain", post: "rangement", time: "Après 17:00" },
+    { name: "christophe", post: "rangement", time: "Après 17:00 (Volant)" },
+    { name: "nicolas", post: "volant", time: "En continu (08h00 - 23h00)" },
+    { name: "jennifer", post: "bar", time: "Avant 10:00" },
+    { name: "jennifer", post: "caisse", time: "10:00 - 12:00" },
+    { name: "jennifer", post: "bar", time: "12:00 - 14:00" },
+    { name: "jennifer", post: "bar", time: "14:00 - 17:00" },
+    { name: "jennifer", post: "rangement", time: "Après 17:00" },
+    { name: "sandra", post: "bar", time: "10:00 - 14:00" },
+    { name: "sandra", post: "bar", time: "16:00 - 17:00 (⚠️ Pause spectacle entre-temps)" },
+    { name: "sandra", post: "rangement", time: "Après 17:00" },
+    { name: "hoi yu", post: "popcorn", time: "En continu (10h00 - 17h00 + Prépa/Rangement)" },
+    { name: "koon yin", post: "popcorn", time: "Soutien volant (Pas d'heure fixe)" },
+    { name: "domi", post: "caisse", time: "11:30 - 14:00 (Rush midi)" },
+    { name: "laura", post: "caisse", time: "Avant 10:00 (Dès 07h00)" },
+    { name: "laura", post: "caisse", time: "10:00 - 12:00" },
+    { name: "laura", post: "caisse", time: "14:00 - 17:00" },
+    { name: "laura", post: "rangement", time: "Après 17:00" },
+    { name: "kiki", post: "caisse", time: "Avant 10:00 (Mise en place uniquement)" },
+    { name: "bilal", post: "hot-dogs", time: "Avant 10:00" },
+    { name: "bilal", post: "hot-dogs", time: "10:00 - 14:00" },
+    { name: "bilal", post: "rangement", time: "Après 17:00" }
+];
 
-const data = {
-
-"jennifer":[
-"10-11 : Caisse",
-"11-12 : Caisse",
-"12-13 : Caisse",
-"13-14 : Caisse",
-"14-15 : Caisse",
-"15-16 : Caisse",
-"16-17 : Caisse"
-],
-
-"alex":[
-"10-11 : Caisse",
-"11-12 : Caisse",
-"12-13 : Caisse",
-"13-14 : Caisse",
-"14-15 : Caisse",
-"15-16 : Caisse",
-"16-17 : Caisse"
-],
-
-"domi":[
-"11h30 - 14h00 : Caisse"
-],
-
-"alain":[
-"10-17 : Hot-dogs / Hamburgers"
-],
-
-"bilal":[
-"10-17 : Hot-dogs / Hamburgers"
-],
-
-"juliana":[
-"10-16 : Hot-dogs / Hamburgers"
-],
-
-"sandra":[
-"10-17 : Bar"
-],
-
-"daniela":[
-"10-17 : Bar"
-],
-
-"laura":[
-"10-17 : Bar"
-],
-
-"hoi yu":[
-"10-17 : Popcorn / Barbe à papa"
-],
-
-"nicolas":[
-"10-17 : Volant / Dispatch"
-],
-
-"bar":[
-"10-17 : Sandra • Daniela • Laura"
-],
-
-"caisse":[
-"10-11 Jennifer • Alex",
-"11-14 Jennifer • Alex • Domi",
-"14-17 Jennifer • Alex"
-],
-
-"hotdogs":[
-"10-16 Alain • Bilal • Juliana",
-"16-17 Alain • Bilal • Christophe"
-],
-
-"popcorn":[
-"Hoi Yu",
-"Koon Yin en renfort"
-]
-
-};
-
-function searchPlanning(value){
-
-value=value.toLowerCase().trim();
-
-let result=document.getElementById("result");
-
-if(value===""){
-result.style.display="none";
-return;
+function filterDynamic(value) {
+    const query = value.toLowerCase().trim();
+    const container = document.getElementById('result-container');
+    const content = document.getElementById('result-content');
+    
+    if (!query) {
+        container.style.display = 'none';
+        return;
+    }
+    
+    // Filtrer tous les éléments qui matchent le prénom ou le nom du pôle
+    const matches = scheduleData.filter(item => 
+        item.name.includes(query) || item.post.includes(query)
+    );
+    
+    if (matches.length === 0) {
+        container.style.display = 'block';
+        content.innerHTML = '<span style="color: var(--text-muted)">Aucun créneau ou pôle trouvé pour cette recherche.</span>';
+        return;
+    }
+    
+    container.style.display = 'block';
+    content.innerHTML = matches.map(item => `
+        <span class="badge">
+            <strong>${item.name.toUpperCase()}</strong> — ${item.post.toUpperCase()} (${item.time})
+        </span>
+    `).join('');
 }
-
-for(let key in data){
-
-if(key.includes(value)){
-
-result.style.display="block";
-
-result.innerHTML=
-"<h2>"+key.toUpperCase()+"</h2><br>" +
-data[key].map(x=>"<div class='badge'>"+x+"</div>").join("<br>");
-
-return;
-}
-}
-
-result.style.display="block";
-result.innerHTML="Aucun résultat";
-}
-
 </script>
 
 </body>
