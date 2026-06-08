@@ -646,7 +646,7 @@
     <header>
         <div class="badge">Planning</div>
         <h1>Fête des Maternelles</h1>
-        <p class="subtitle">12-13 juin</p>
+        <p class="subtitle">12-13 juin • Planning final</p>
     </header>
 
     <div class="search-container">
@@ -727,7 +727,60 @@
         <div class="section-header">
             <span class="section-icon">🎪</span>
             <h2>Samedi 13/06</h2>
-            <span class="section-time">10:00–17:00 Fête</span>
+            <span class="section-time">Dès 07:00 - Toute la journée</span>
+        </div>
+
+        <!-- AVANT 10h - INSTALLATION -->
+        <div class="grid wide">
+            <div class="card fade-on-scroll" style="border-top: 6px solid var(--accent-green);">
+                <div class="card-header">
+                    <span class="card-icon">🌅</span>
+                    <div>
+                        <h3>Avant 10:00 — Installation & Préparation</h3>
+                        <p style="font-size: 13px; color: var(--text-sub); font-weight: 500; margin-top: 6px;">The party 🎉</p>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+                    <div style="padding: 14px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(6, 182, 212, 0.08)); border-radius: 14px; border-left: 4px solid var(--accent-green);">
+                        <div style="font-weight: 700; color: var(--text-main); margin-bottom: 8px;">07:00+</div>
+                        <span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)" style="display: inline-block;">Laura</span>
+                    </div>
+                    <div style="padding: 14px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(6, 182, 212, 0.08)); border-radius: 14px; border-left: 4px solid var(--accent-green);">
+                        <div style="font-weight: 700; color: var(--text-main); margin-bottom: 8px;">08:00+</div>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Jennifer</span>
+                            <span class="person-tag tag-log name" onclick="openPersonModal(this.innerText)">Nicolas</span>
+                        </div>
+                    </div>
+                    <div style="padding: 14px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(6, 182, 212, 0.08)); border-radius: 14px; border-left: 4px solid var(--accent-green);">
+                        <div style="font-weight: 700; color: var(--text-main); margin-bottom: 8px;">08:00–10:00</div>
+                        <span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)" style="display: inline-block;">Kiki</span>
+                    </div>
+                    <div style="padding: 14px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(6, 182, 212, 0.08)); border-radius: 14px; border-left: 4px solid var(--accent-green);">
+                        <div style="font-weight: 700; color: var(--text-main); margin-bottom: 8px;">08:30+</div>
+                        <span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)" style="display: inline-block;">Sandra</span>
+                    </div>
+                    <div style="padding: 14px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(6, 182, 212, 0.08)); border-radius: 14px; border-left: 4px solid var(--accent-green);">
+                        <div style="font-weight: 700; color: var(--text-main); margin-bottom: 8px;">09:00+</div>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Alain</span>
+                            <span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Daniela</span>
+                            <span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Alex</span>
+                            <span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Bilal</span>
+                        </div>
+                    </div>
+                    <div style="padding: 14px; background: linear-gradient(135deg, rgba(229, 231, 235, 0.5), rgba(209, 213, 219, 0.5)); border-radius: 14px; border-left: 4px solid var(--text-sub);">
+                        <div style="font-weight: 700; color: var(--text-sub); margin-bottom: 8px;">Flexible</div>
+                        <span class="person-tag" style="background: #e5e7eb; color: var(--text-sub); border: 1px solid var(--text-sub);" onclick="openPersonModal(this.innerText)" style="display: inline-block;">Christophe</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- THE PARTY - PLANNING RÉEL -->
+        <div style="text-align: center; margin: 60px 0 40px; padding: 40px 0; border-bottom: 3px solid var(--accent-blue);">
+            <h2 style="font-family: 'Epilogue', sans-serif; font-size: 2.5rem; font-weight: 900; background: linear-gradient(135deg, var(--accent-blue), var(--accent-warm)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">The party</h2>
+            <p style="color: var(--text-sub); font-size: 14px; margin-top: 12px; font-weight: 500;">10:00 → 17:00 — Le planning 🎉</p>
         </div>
 
         <div class="grid">
@@ -810,43 +863,48 @@
         <div class="section-header">
             <span class="section-icon">🧹</span>
             <h2>Après 17:00</h2>
-            <span class="section-time">Clôture & Démontage</span>
+            <span class="section-time">Rangement & Clôture</span>
         </div>
 
         <div class="grid wide">
             <div class="card fade-on-scroll">
                 <div class="card-header">
                     <span class="card-icon">📦</span>
-                    <h3>Démontage Général</h3>
+                    <h3>Disponibilités pour le Rangement</h3>
                 </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
-                    <div style="padding: 18px; background: linear-gradient(135deg, rgba(254, 226, 226, 0.5), rgba(254, 202, 202, 0.5)); border-radius: 16px; border: 1px solid rgba(185, 28, 28, 0.2);">
-                        <p style="font-weight: 700; color: var(--text-main); margin-bottom: 12px;">🍔 Restauration</p>
-                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                            <span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Bilal</span>
-                            <span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Alain</span>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px;">
+                    <div style="padding: 14px; background: linear-gradient(135deg, rgba(254, 226, 226, 0.5), rgba(254, 202, 202, 0.5)); border-radius: 14px; border-left: 4px solid var(--accent-warm);">
+                        <div style="font-weight: 700; color: #b91c1c; margin-bottom: 8px; font-size: 12px;">Jusqu'à 18:00</div>
+                        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
                             <span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Gil</span>
-                        </div>
-                    </div>
-                    <div style="padding: 18px; background: linear-gradient(135deg, rgba(219, 234, 254, 0.5), rgba(191, 219, 254, 0.5)); border-radius: 16px; border: 1px solid rgba(29, 78, 216, 0.2);">
-                        <p style="font-weight: 700; color: var(--text-main); margin-bottom: 12px;">🍺 Bar & Fûts</p>
-                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                             <span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Sandra</span>
-                            <span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Jennifer</span>
                         </div>
                     </div>
-                    <div style="padding: 18px; background: linear-gradient(135deg, rgba(237, 233, 254, 0.5), rgba(221, 214, 254, 0.5)); border-radius: 16px; border: 1px solid rgba(109, 40, 217, 0.2);">
-                        <p style="font-weight: 700; color: var(--text-main); margin-bottom: 12px;">🎟️ Comptes Caisse</p>
-                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <div style="padding: 14px; background: linear-gradient(135deg, rgba(254, 226, 226, 0.5), rgba(254, 202, 202, 0.5)); border-radius: 14px; border-left: 4px solid var(--accent-warm);">
+                        <div style="font-weight: 700; color: #b91c1c; margin-bottom: 8px; font-size: 12px;">Jusqu'à 19:00</div>
+                        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                            <span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Alain</span>
+                            <span class="person-tag tag-bar name" onclick="openPersonModal(this.innerText)">Daniela</span>
                             <span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Alex</span>
+                            <span class="person-tag tag-burger name" onclick="openPersonModal(this.innerText)">Bilal</span>
+                        </div>
+                    </div>
+                    <div style="padding: 14px; background: linear-gradient(135deg, rgba(254, 226, 226, 0.5), rgba(254, 202, 202, 0.5)); border-radius: 14px; border-left: 4px solid var(--accent-warm);">
+                        <div style="font-weight: 700; color: #b91c1c; margin-bottom: 8px; font-size: 12px;">Jusqu'à 20:00</div>
+                        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
                             <span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Laura</span>
                         </div>
                     </div>
-                    <div style="padding: 18px; background: linear-gradient(135deg, rgba(254, 243, 199, 0.5), rgba(253, 230, 138, 0.5)); border-radius: 16px; border: 1px solid rgba(161, 98, 7, 0.2);">
-                        <p style="font-weight: 700; color: var(--text-main); margin-bottom: 12px;">🚨 Déconstruction</p>
-                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <div style="padding: 14px; background: linear-gradient(135deg, rgba(254, 226, 226, 0.5), rgba(254, 202, 202, 0.5)); border-radius: 14px; border-left: 4px solid var(--accent-warm);">
+                        <div style="font-weight: 700; color: #b91c1c; margin-bottom: 8px; font-size: 12px;">Jusqu'à 23:00</div>
+                        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                            <span class="person-tag tag-caisse name" onclick="openPersonModal(this.innerText)">Jennifer</span>
                             <span class="person-tag tag-log name" onclick="openPersonModal(this.innerText)">Nicolas</span>
-                            <span class="person-tag tag-log name" onclick="openPersonModal(this.innerText)">Christophe</span>
+                        </div>
+                    </div>
+                    <div style="padding: 14px; background: linear-gradient(135deg, rgba(254, 243, 199, 0.5), rgba(253, 230, 138, 0.5)); border-radius: 14px; border-left: 4px solid var(--accent-warm);">
+                        <div style="font-weight: 700; color: #a16207; margin-bottom: 8px; font-size: 12px;">Flexible (popcorn)</div>
+                        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
                             <span class="person-tag tag-log name" onclick="openPersonModal(this.innerText)">Hoi Yu</span>
                         </div>
                     </div>
